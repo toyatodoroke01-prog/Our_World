@@ -1,282 +1,649 @@
 <!DOCTYPE html>
-<html lang="ckb" dir="rtl">
+<html dir="rtl" lang="ckb">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our_World | جیهانی ئەنیمێ</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: #0b0410;
-            color: #f3e8ff;
-        }
-        /* Custom scrollbar for clean look */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b0410;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #581c87;
-            border-radius: 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our_World — ئەنیمێ بە زمانی کوردی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{
+  colors:{bg:'#0B0B10',sf:'#131319',sf2:'#181820',tx:'#F4F4F7',mut:'#8D8D9C',acc:'#8B8BFF',acc2:'#B79CFF'},
+  fontFamily:{v:['Vazirmatn','sans-serif'],g:['"Space Grotesk"','sans-serif']},
+  boxShadow:{glow:'0 10px 44px -10px rgba(139,139,255,.45)'}
+}}}
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{overflow-x:hidden}
+  ::selection{background:#8B8BFF;color:#fff}
+  ::-webkit-scrollbar{width:9px;height:6px}
+  ::-webkit-scrollbar-track{background:#0B0B10}
+  ::-webkit-scrollbar-thumb{background:#26262F;border-radius:9px}
+  ::-webkit-scrollbar-thumb:hover{background:#8B8BFF}
+  .noscroll::-webkit-scrollbar{display:none}
+  .noscroll{scrollbar-width:none}
+  @keyframes hin{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  .hin{animation:hin .75s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes pop{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+  .pop{animation:pop .35s cubic-bezier(.2,.7,.3,1.1) both}
+  @keyframes tin{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+  .tin{animation:tin .4s cubic-bezier(.2,.7,.3,1.1) both}
+  .rv{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  #hdrBg{transition:opacity .4s}
+  #progress{transform-origin:right;transform:scaleX(0)}
+  #drawer{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+  .ghost-num{color:transparent;-webkit-text-stroke:1.3px rgba(255,255,255,.28)}
+  #toTop{opacity:0;pointer-events:none;transition:.3s}
+  #toTop.show{opacity:1;pointer-events:auto}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
 </head>
-<body class="min-h-screen flex flex-col justify-between pb-24 selection:bg-purple-600 selection:text-white">
 
-    <!-- Top Header -->
-    <header class="bg-[#12071f]/90 backdrop-blur-md border-b border-purple-900/40 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <!-- Left: Logo & Sign up -->
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <img src="https://i.postimg.cc/rwD7KZYf/IMG-20260929-231244-779.jpg" alt="Logo" class="w-10 h-10 rounded-full object-cover border-2 border-purple-500 shadow-md shadow-purple-500/30">
-                <button onclick="switchTab('profile')" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold px-3 py-2 rounded-xl shadow-md shadow-purple-600/30 transition">خۆتۆمارکردن</button>
-            </div>
+<body class="bg-bg text-tx font-v antialiased">
 
-            <!-- Center: Channel Name -->
-            <div class="absolute left-1/2 transform -translate-x-1/2">
-                <span class="text-lg font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">Our_World</span>
-            </div>
+<!-- ═══════════ هێدر ═══════════ -->
+<header class="fixed top-0 inset-x-0 z-50">
+  <div id="hdrBg" class="absolute inset-0 bg-bg/75 backdrop-blur-xl border-b border-white/[.06] opacity-0"></div>
+  <div id="progress" class="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-l from-acc to-acc2"></div>
 
-            <!-- Right: Search Button / Bar -->
-            <div class="flex items-center">
-                <div class="relative">
-                    <input type="text" placeholder="سەرچ..." class="w-28 sm:w-40 bg-[#1e0e2e] border border-purple-900/60 rounded-xl px-3 py-1.5 text-xs text-white focus:w-48 focus:outline-none focus:border-purple-500 transition-all duration-300">
-                </div>
-            </div>
-        </div>
-    </header>
+  <div class="relative max-w-7xl mx-auto px-5 h-16 flex items-center gap-3">
+    <!-- لۆگۆ -->
+    <a href="#hero" class="flex items-center gap-3 shrink-0">
+      <img src="https://i.postimg.cc/rwD7KZYf/IMG-20260929-231244-779.jpg" alt="Our_World"
+           class="h-10 w-10 rounded-xl object-cover border border-white/10"
+           onerror="this.classList.add('hidden');document.getElementById('lgTxt').classList.remove('hidden')">
+      <span id="lgTxt" class="hidden items-center font-g font-bold text-lg tracking-wide">Our<span class="text-acc">_</span>World</span>
+      <span class="hidden sm:block font-g font-bold text-lg tracking-wide">Our<span class="text-acc">_</span>World</span>
+    </a>
 
-    <!-- Main Content Container -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-6 w-full space-y-8">
-
-        <!-- 1. Home Tab -->
-        <section id="home-tab" class="tab-content space-y-8">
-            <!-- Welcome Box -->
-            <div class="bg-gradient-to-br from-purple-950/60 via-[#150a21] to-[#12071f] p-8 rounded-3xl border border-purple-800/40 shadow-2xl backdrop-blur-sm text-center relative overflow-hidden">
-                <div class="absolute -right-10 -top-10 w-40 h-40 bg-purple-600/10 rounded-full blur-3xl"></div>
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">بەخێر بێیت بۆ جیهانی ئەنیمێ <span class="text-purple-400 block mt-1">Our_World</span></h1>
-                <p class="text-purple-200 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">باشترین پلاتفۆرمی کوردی بۆ بینین و زانیاری دەربارەی ئەنیمێکان بە ڕوکارێکی خاوێن، سەرنجڕاکێش و تایبەت بەخۆت.</p>
-            </div>
-
-            <!-- Anime List Section (Scroll down content) -->
-            <div class="space-y-4">
-                <h2 class="text-xl font-bold text-white border-r-4 border-purple-500 pr-3">لیستی ئەنیمێ گشتییەکان</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    <!-- Anime Card 1 -->
-                    <div class="bg-[#150a21] border border-purple-900/40 rounded-2xl p-3 shadow-lg hover:border-purple-500/60 transition duration-300">
-                        <div class="h-36 bg-purple-950/50 rounded-xl mb-3 flex items-center justify-center text-purple-400 text-xs font-bold border border-purple-800/30">وێنەی ئەنیمێ</div>
-                        <h3 class="font-bold text-white text-sm mb-1 truncate">ناوی ئەنیمێ ١</h3>
-                        <p class="text-purple-300 text-xs truncate">جۆر: ئەشکەنجە / جادوو</p>
-                    </div>
-                    <!-- Anime Card 2 -->
-                    <div class="bg-[#150a21] border border-purple-900/40 rounded-2xl p-3 shadow-lg hover:border-purple-500/60 transition duration-300">
-                        <div class="h-36 bg-purple-950/50 rounded-xl mb-3 flex items-center justify-center text-purple-400 text-xs font-bold border border-purple-800/30">وێنەی ئەنیمێ</div>
-                        <h3 class="font-bold text-white text-sm mb-1 truncate">ناوی ئەنیمێ ٢</h3>
-                        <p class="text-purple-300 text-xs truncate">جۆر: سەرکێشی / خەیاڵی</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. Anime Info Tab -->
-        <section id="anime-tab" class="tab-content hidden space-y-6">
-            <h2 class="text-2xl font-bold text-white border-r-4 border-purple-500 pr-3">زانیاری و ستۆدیۆی ئەنیمێکان</h2>
-            <div class="bg-[#150a21] border border-purple-900/50 rounded-2xl p-6 shadow-xl space-y-4">
-                <div class="h-48 bg-purple-950/50 rounded-xl flex items-center justify-center text-purple-400 font-bold border border-purple-800/30">ڤیدیۆ / زانیاری تەواو</div>
-                <h3 class="text-xl font-bold text-white">زانیاری فراوان دەربارەی زنجیرەکان</h3>
-                <p class="text-purple-300 text-sm leading-relaxed">لێرەدا دەتوانیت سەرجەم زانیارییەکان، کورتەی چیرۆک و لینکەکان ببینی...</p>
-            </div>
-        </section>
-
-        <!-- 3. Profile / Auth Tab -->
-        <section id="profile-tab" class="tab-content hidden max-w-xl mx-auto">
-            <div class="bg-[#150a21] border border-purple-900/60 rounded-3xl p-6 shadow-2xl backdrop-blur-md">
-                
-                <!-- Login View -->
-                <div id="login-view" class="space-y-5">
-                    <div class="text-center">
-                        <h2 class="text-2xl font-extrabold text-white mb-2">چوونەژوورەوە / تۆمارکردن</h2>
-                        <p class="text-purple-300 text-xs">ئیمەیڵەکەت بنوسە بۆ چوونەژوورەوە</p>
-                    </div>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-medium text-purple-300 mb-1">ئیمەیڵ (Gmail)</label>
-                            <input type="email" id="user-email" placeholder="example@gmail.com" class="w-full bg-[#1e0e2e] border border-purple-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-purple-500">
-                        </div>
-                        <button onclick="sendOtp()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-purple-600/30 transition text-sm">ناردنی کۆدی پشتڕاستکردنەوە</button>
-                    </div>
-                </div>
-
-                <!-- OTP Verification View -->
-                <div id="otp-view" class="space-y-5 hidden">
-                    <div class="text-center">
-                        <h2 class="text-2xl font-extrabold text-white mb-2">پشکنینی کۆد</h2>
-                        <p class="text-purple-300 text-xs">کۆدی چوار ژمارەیی نێردرا بۆ ئیمەیڵەکەت</p>
-                    </div>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-medium text-purple-300 mb-1">کۆدی پشتڕاستکردنەوە</label>
-                            <input type="text" id="otp-input" placeholder="1234" class="w-full text-center tracking-widest text-xl bg-[#1e0e2e] border border-purple-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500">
-                        </div>
-                        <button onclick="verifyOtp()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-purple-600/30 transition text-sm">دڵنیاکردنەوە</button>
-                    </div>
-                </div>
-
-                <!-- User Profile View -->
-                <div id="user-profile-view" class="space-y-5 hidden">
-                    <div class="flex items-center space-x-4 space-x-reverse pb-4 border-b border-purple-900/60">
-                        <div class="w-16 h-16 rounded-full bg-purple-950 border-2 border-purple-500 overflow-hidden">
-                            <img id="profile-img-preview" src="https://i.postimg.cc/rwD7KZYf/IMG-20260929-231244-779.jpg" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h3 id="display-name" class="text-lg font-bold text-white">تۆیا</h3>
-                            <p id="display-username" class="text-purple-400 text-xs">@toya_anime</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3 text-xs">
-                        <div>
-                            <label class="block font-medium text-purple-300 mb-1">ناوی ڕاستەقینە</label>
-                            <input type="text" id="edit-name" class="w-full bg-[#1e0e2e] border border-purple-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-500">
-                        </div>
-                        <div>
-                            <label class="block font-medium text-purple-300 mb-1">یوزەرنەیم (گۆڕانکاری تەنها هەر ٧ ڕۆژ جارێک)</label>
-                            <input type="text" id="edit-username" class="w-full bg-[#1e0e2e] border border-purple-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-500">
-                            <p id="username-error" class="text-red-400 text-[10px] mt-1 hidden">ناتوانیت یوزەرنەیم بگۆڕیت پێش تەواوبوونی ٧ ڕۆژ!</p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block font-medium text-purple-300 mb-1">تەمەن</label>
-                                <input type="number" id="edit-age" class="w-full bg-[#1e0e2e] border border-purple-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-500">
-                            </div>
-                            <div>
-                                <label class="block font-medium text-purple-300 mb-1">ڕەگەز</label>
-                                <select id="edit-gender" class="w-full bg-[#1e0e2e] border border-purple-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-500">
-                                    <option value="نێر">نێر</option>
-                                    <option value="مێ">مێ</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block font-medium text-purple-300 mb-1">کەسایەتی MBTI</label>
-                            <select id="edit-mbti" class="w-full bg-[#1e0e2e] border border-purple-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-500">
-                                <option value="INTJ">INTJ - مێشکە گەورە</option>
-                                <option value="INTP">INTP - لۆژیکی</option>
-                                <option value="ENTJ">ENTJ - سەرکردە</option>
-                                <option value="ENFP">ENFP - سەرکێش</option>
-                                <option value="INFJ">INFJ - پارێزەر</option>
-                                <option value="ISTP">ISTP - لێهاتوو</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block font-medium text-purple-300 mb-1">لینکی وێنەی پڕۆفایل (Direct Link)</label>
-                            <input type="text" id="edit-img" class="w-full bg-[#1e0e2e] border border-purple-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-500">
-                        </div>
-                        <button onclick="saveProfile()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-purple-600/30 transition text-sm">پاشەکەوتکردن</button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Bottom Navigation Bar (Fixed at bottom as requested) -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-[#12071f]/95 backdrop-blur-lg border-t border-purple-900/40 py-3 z-50 shadow-2xl">
-        <div class="max-w-md mx-auto flex justify-around items-center px-6">
-            <button onclick="switchTab('profile')" class="flex flex-col items-center text-purple-300 hover:text-white transition group">
-                <svg class="w-6 h-6 mb-1 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                <span class="text-xs font-medium">پڕۆفایل</span>
-            </button>
-            <button onclick="switchTab('home')" class="flex flex-col items-center text-purple-300 hover:text-white transition group">
-                <svg class="w-6 h-6 mb-1 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                <span class="text-xs font-medium">سەرەتا</span>
-            </button>
-            <button onclick="switchTab('anime')" class="flex flex-col items-center text-purple-300 hover:text-white transition group">
-                <svg class="w-6 h-6 mb-1 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                <span class="text-xs font-medium">زانیاری ئەنیمێ</span>
-            </button>
-        </div>
+    <!-- ناڤیگەیشن -->
+    <nav class="hidden md:flex items-center gap-1 mx-auto">
+      <a href="#hero"    class="px-4 py-2 rounded-full text-sm text-mut hover:text-tx hover:bg-white/5 transition">سەرەکی</a>
+      <a href="#latest"  class="px-4 py-2 rounded-full text-sm text-mut hover:text-tx hover:bg-white/5 transition">نوێترین</a>
+      <a href="#popular" class="px-4 py-2 rounded-full text-sm text-mut hover:text-tx hover:bg-white/5 transition">بەناوبانگ</a>
+      <a href="#genres"  class="px-4 py-2 rounded-full text-sm text-mut hover:text-tx hover:bg-white/5 transition">ژانەرەکان</a>
+      <a href="#about"   class="px-4 py-2 rounded-full text-sm text-mut hover:text-tx hover:bg-white/5 transition">دەربارەی ئێمە</a>
     </nav>
 
-    <!-- JavaScript -->
-    <script>
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId + '-tab').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    <div class="flex-1 md:hidden"></div>
 
-        function sendOtp() {
-            const email = document.getElementById('user-email').value;
-            if(!email) { alert('تکایە ئیمەیڵەکەت بنوسە'); return; }
-            alert('کۆدی پشتڕاستکردنەوە نێردرا بۆ ' + email);
-            document.getElementById('login-view').classList.add('hidden');
-            document.getElementById('otp-view').classList.remove('hidden');
-        }
+    <!-- لای چەپ -->
+    <div class="flex items-center gap-2">
+      <button id="searchBtn" class="w-10 h-10 grid place-items-center rounded-full border border-white/10 text-mut hover:text-tx hover:border-white/30 transition" aria-label="گەڕان">
+        <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+      </button>
 
-        function verifyOtp() {
-            const code = document.getElementById('otp-input').value;
-            if(code.length < 4) { alert('تکایە کۆدی ڕاست بنوسە'); return; }
-            alert('بە سەرکەوتوویی چوویە ژوورەوە!');
-            document.getElementById('otp-view').classList.add('hidden');
-            document.getElementById('user-profile-view').classList.remove('hidden');
-            loadUserData();
-        }
+      <button id="loginBtn" class="hidden sm:flex items-center gap-2 rounded-full bg-gradient-to-l from-acc to-acc2 px-5 py-2.5 text-sm font-bold text-white shadow-glow hover:opacity-90 hover:-translate-y-0.5 transition">
+        چونەژوورەوە
+      </button>
 
-        function loadUserData() {
-            let userData = JSON.parse(localStorage.getItem('our_world_user')) || {
-                name: 'تۆیا',
-                username: 'toya_anime',
-                age: 19,
-                gender: 'نێر',
-                mbti: 'INTJ',
-                img: 'https://i.postimg.cc/rwD7KZYf/IMG-20260929-231244-779.jpg',
-                lastUsernameChange: 0
-            };
+      <div id="userArea" class="hidden relative">
+        <button id="userBtn" class="flex items-center gap-2 rounded-full border border-white/10 ps-1.5 pe-3 py-1.5 hover:border-white/30 transition">
+          <span id="uAv" class="grid place-items-center w-7 h-7 rounded-full bg-gradient-to-l from-acc to-acc2 text-white text-xs font-bold">O</span>
+          <span id="uNm" class="text-sm font-semibold max-w-[90px] truncate"></span>
+        </button>
+        <div id="userPanel" class="hidden absolute top-full mt-3 start-0 w-52 rounded-2xl border border-white/10 bg-sf p-1.5 shadow-2xl">
+          <button id="uWl" class="w-full flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm hover:bg-white/5 transition">♡ خوازراوەکانم</button>
+          <button id="logoutBtn" class="w-full flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm text-rose-300 hover:bg-rose-500/10 transition">دەرچوون</button>
+        </div>
+      </div>
 
-            document.getElementById('display-name').innerText = userData.name;
-            document.getElementById('display-username').innerText = '@' + userData.username;
-            document.getElementById('edit-name').value = userData.name;
-            document.getElementById('edit-username').value = userData.username;
-            document.getElementById('edit-age').value = userData.age;
-            document.getElementById('edit-gender').value = userData.gender;
-            document.getElementById('edit-mbti').value = userData.mbti;
-            document.getElementById('edit-img').value = userData.img;
-            document.getElementById('profile-img-preview').src = userData.img;
-        }
+      <button id="burger" class="md:hidden w-10 h-10 grid place-items-center rounded-full border border-white/10 text-mut hover:text-tx transition" aria-label="مێنیو">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-        function saveProfile() {
-            let userData = JSON.parse(localStorage.getItem('our_world_user')) || { lastUsernameChange: 0 };
-            let newUsername = document.getElementById('edit-username').value;
-            let currentTime = new Date().getTime();
-            let sevenDaysInMs = 7 * 24 * 60 * 60 * 1000;
+<!-- مێنیوی مۆبایل -->
+<div id="drawerBk" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm hidden"></div>
+<aside id="drawer" class="fixed inset-y-0 left-0 z-[61] w-72 bg-sf border-r border-white/[.06] p-6 -translate-x-full flex flex-col">
+  <div class="flex items-center justify-between mb-8">
+    <span class="font-g font-bold text-lg">Our<span class="text-acc">_</span>World</span>
+    <button id="drawerX" class="w-9 h-9 grid place-items-center rounded-full border border-white/10 text-mut hover:text-tx transition" aria-label="داخستن">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-1">
+    <a href="#hero"    class="drawer-link px-4 py-3 rounded-xl text-mut hover:text-tx hover:bg-white/5 transition">سەرەکی</a>
+    <a href="#latest"  class="drawer-link px-4 py-3 rounded-xl text-mut hover:text-tx hover:bg-white/5 transition">نوێترین</a>
+    <a href="#popular" class="drawer-link px-4 py-3 rounded-xl text-mut hover:text-tx hover:bg-white/5 transition">بەناوبانگ</a>
+    <a href="#genres"  class="drawer-link px-4 py-3 rounded-xl text-mut hover:text-tx hover:bg-white/5 transition">ژانەرەکان</a>
+    <a href="#about"   class="drawer-link px-4 py-3 rounded-xl text-mut hover:text-tx hover:bg-white/5 transition">دەربارەی ئێمە</a>
+  </nav>
+  <button id="drawerLogin" class="mt-auto rounded-2xl bg-gradient-to-l from-acc to-acc2 py-3.5 font-bold text-white shadow-glow">چونەژوورەوە</button>
+</aside>
 
-            if (newUsername !== userData.username) {
-                if (userData.lastUsernameChange && (currentTime - userData.lastUsernameChange < sevenDaysInMs)) {
-                    document.getElementById('username-error').classList.remove('hidden');
-                    return;
-                } else {
-                    userData.lastUsernameChange = currentTime;
-                    document.getElementById('username-error').classList.add('hidden');
-                }
-            }
+<main>
+<!-- ═══════════ هێرۆ ═══════════ -->
+<section id="hero" class="relative min-h-[92vh] flex items-end overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="absolute -top-32 start-1/4 w-[560px] h-[560px] rounded-full bg-acc/15 blur-[140px] pointer-events-none"></div>
+    <div id="heroBgs"></div>
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/55 to-bg/10"></div>
 
-            userData.name = document.getElementById('edit-name').value;
-            userData.username = newUsername;
-            userData.age = document.getElementById('edit-age').value;
-            userData.gender = document.getElementById('edit-gender').value;
-            userData.mbti = document.getElementById('edit-mbti').value;
-            userData.img = document.getElementById('edit-img').value;
+  <div class="relative z-10 max-w-7xl mx-auto px-5 pb-16 sm:pb-20 pt-32 w-full">
+    <div id="heroCt"></div>
+    <div id="heroDots" class="flex items-center gap-2 mt-8"></div>
+  </div>
+</section>
 
-            localStorage.setItem('our_world_user', JSON.stringify(userData));
-            loadUserData();
-            alert('گۆڕانکارییەکان بە سەرکەوتوویی پاشەکەوت کرան!');
-        }
-    </script>
+<!-- ═══════════ نوێترین ═══════════ -->
+<section id="latest" class="scroll-mt-24 max-w-7xl mx-auto px-5 py-16 sm:py-20">
+  <div class="rv flex items-end justify-between gap-4 mb-8">
+    <div>
+      <p class="text-acc text-[13px] font-bold mb-1.5">نوێکراوەی ڕۆژانە</p>
+      <h2 class="text-2xl sm:text-3xl font-extrabold">تازەترین ئەلقەکان</h2>
+    </div>
+    <div class="hidden sm:flex gap-2">
+      <button id="ltR" class="w-10 h-10 grid place-items-center rounded-full border border-white/10 text-mut hover:text-tx hover:border-white/30 transition" aria-label="پێشتر">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <button id="ltL" class="w-10 h-10 grid place-items-center rounded-full border border-white/10 text-mut hover:text-tx hover:border-white/30 transition" aria-label="دواتر">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="latestRow" class="rv flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 noscroll"></div>
+</section>
+
+<!-- ═══════════ بەناوبانگ ═══════════ -->
+<section id="popular" class="scroll-mt-24 max-w-7xl mx-auto px-5 py-16 sm:py-20">
+  <div class="rv mb-8">
+    <p class="text-acc text-[13px] font-bold mb-1.5">هەڵبژاردەی بینەران</p>
+    <h2 class="text-2xl sm:text-3xl font-extrabold">بەناوبانگەکان</h2>
+  </div>
+  <div id="popGrid" class="rv grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5"></div>
+</section>
+
+<!-- ═══════════ ژانەرەکان ═══════════ -->
+<section id="genres" class="scroll-mt-24 max-w-7xl mx-auto px-5 py-16 sm:py-20">
+  <div class="rv mb-8">
+    <p class="text-acc text-[13px] font-bold mb-1.5">ئەوەی حەزت لێیە بدۆزە</p>
+    <h2 class="text-2xl sm:text-3xl font-extrabold">ژانەرەکان</h2>
+  </div>
+  <div id="genreRow" class="rv flex flex-wrap gap-2.5"></div>
+</section>
+
+<!-- ═══════════ دەربارەی ئێمە ═══════════ -->
+<section id="about" class="scroll-mt-24 max-w-7xl mx-auto px-5 py-16 sm:py-20">
+  <div class="rv mb-8">
+    <p class="text-acc text-[13px] font-bold mb-1.5">تیمی ئێمە</p>
+    <h2 class="text-2xl sm:text-3xl font-extrabold">دەربارەی ئێمە</h2>
+  </div>
+  <div class="rv grid lg:grid-cols-2 gap-6">
+    <div class="rounded-3xl border border-white/[.07] bg-sf p-8 sm:p-10 flex flex-col justify-center">
+      <h3 class="text-xl font-bold mb-4">چیرۆکی Our_World</h3>
+      <p class="text-mut leading-8 text-[15px]">
+        ئێمە کۆمەڵێک گەنجی کوردین کە حەزمان لە ئەنیمێیە و ویستمان ئەنیمێ بە زمانی دایکی خۆمان ببینین.
+        لە Our_Worldدا تازەترین ئەلقەکان بە ژێرنووسی کوردی کۆدەکەینەوە و بە خۆشەویستی بەخۆڕایی پێشکەشی دەکەین.
+        ئامانجمان ئەوەیە هەموو کەسێک بتوانێت جیهانی ئەنیمێ بە زمانی خۆی بژی.
+      </p>
+      <div class="flex items-center gap-2.5 mt-6 text-sm text-mut">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        دامەزرێنەر: ئارام محەمەد — لە 2023ەوە لەگەڵتان
+      </div>
+    </div>
+    <div id="teamGrid" class="grid sm:grid-cols-3 gap-4"></div>
+  </div>
+</section>
+</main>
+
+<!-- ═══════════ فووتەر ═══════════ -->
+<footer class="border-t border-white/[.06]">
+  <div class="max-w-7xl mx-auto px-5 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <img src="https://i.postimg.cc/rwD7KZYf/IMG-20260929-231244-779.jpg" alt="Our_World" class="h-9 w-9 rounded-lg object-cover border border-white/10" onerror="this.style.display='none'">
+      <span class="font-g font-bold">Our<span class="text-acc">_</span>World</span>
+    </div>
+    <p class="text-[13px] text-mut text-center">© 2025 <span class="font-g" dir="ltr">Our_World</span> — هەموو مافەکان پارێزراون · بە خۆشەویستی لە کوردستانەوە</p>
+    <div class="flex gap-2">
+      <button class="soc w-10 h-10 grid place-items-center rounded-full border border-white/10 text-mut hover:text-acc hover:border-acc/50 transition" data-s="تێلێگرام" aria-label="تێلێگرام">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></svg>
+      </button>
+      <button class="soc w-10 h-10 grid place-items-center rounded-full border border-white/10 text-mut hover:text-acc hover:border-acc/50 transition" data-s="ئینستاگرام" aria-label="ئینستاگرام">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01" stroke-linecap="round"/></svg>
+      </button>
+      <button class="soc w-10 h-10 grid place-items-center rounded-full border border-white/10 text-mut hover:text-acc hover:border-acc/50 transition" data-s="یوتیوب" aria-label="یوتیوب">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49 49 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49 49 0 0 1-16.2 0 2 2 0 0 1-1.4-1.4"/><path d="m10 15 5-3-5-3z"/></svg>
+      </button>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ گەڕان (ئۆڤەرلەی) ═══════════ -->
+<div id="searchOv" class="fixed inset-0 z-[70] hidden">
+  <div class="absolute inset-0 bg-bg/85 backdrop-blur-2xl"></div>
+  <div class="panel relative h-full overflow-y-auto">
+    <div class="max-w-4xl mx-auto px-5 pt-24 sm:pt-28 pb-16">
+      <button id="searchX" class="absolute top-5 end-5 w-10 h-10 grid place-items-center rounded-full border border-white/10 text-mut hover:text-tx transition" aria-label="داخستن">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="relative">
+        <svg class="absolute start-5 top-1/2 -translate-y-1/2 w-6 h-6 text-mut pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        <input id="bigSearch" type="search" placeholder="گەڕان بۆ ئەنیمێ..."
+          class="w-full bg-sf border border-white/10 rounded-2xl py-5 ps-14 pe-5 text-lg font-semibold placeholder:text-mut/50 outline-none focus:border-acc/60 focus:ring-4 focus:ring-acc/10 transition">
+      </div>
+
+      <div id="ovGenres" class="flex flex-wrap gap-2 mt-5"></div>
+      <p id="ovCount" class="text-sm text-mut mt-6 mb-4"></p>
+      <div id="ovGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+      <div id="ovEmpty" class="hidden text-center py-14">
+        <p class="text-mut">هیچ ئەنیمێیەک نەدۆزرایەوە — گەڕانەکە بگۆڕە.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ مۆداڵی وردەکاری ═══════════ -->
+<div id="detModal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" data-x="det"></div>
+  <div class="pop relative w-[min(40rem,100%)] max-h-[90vh] overflow-y-auto rounded-3xl border border-white/10 bg-sf shadow-2xl">
+    <button class="absolute top-4 end-4 z-10 w-9 h-9 grid place-items-center rounded-full bg-black/50 backdrop-blur border border-white/10 text-tx hover:bg-black/70 transition" data-x="det" aria-label="داخستن">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="detBody"></div>
+  </div>
+</div>
+
+<!-- ═══════════ مۆداڵی چونەژوورەوە ═══════════ -->
+<div id="authModal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" data-x="auth"></div>
+  <div class="pop relative w-[min(24rem,100%)] max-h-[90vh] overflow-y-auto rounded-3xl border border-white/10 bg-sf p-7 shadow-2xl">
+    <button class="absolute top-4 end-4 w-9 h-9 grid place-items-center rounded-full border border-white/10 text-mut hover:text-tx transition" data-x="auth" aria-label="داخستن">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="text-center mb-6">
+      <span class="mx-auto grid place-items-center w-12 h-12 rounded-2xl bg-gradient-to-l from-acc to-acc2 font-g font-bold text-xl text-white shadow-glow">O</span>
+      <h2 id="authTtl" class="mt-3 text-lg font-extrabold">چونەژوورەوە</h2>
+      <p class="text-[13px] text-mut mt-1">بەخێربێیت بۆ Our_World</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-1 p-1 rounded-2xl bg-bg border border-white/[.07] mb-5">
+      <button id="tabL" class="tabb py-2.5 rounded-xl text-sm font-bold text-mut transition">چونەژوورەوە</button>
+      <button id="tabS" class="tabb py-2.5 rounded-xl text-sm font-bold text-mut transition">خۆتۆمارکردن</button>
+    </div>
+
+    <form id="fLogin" class="space-y-3.5" novalidate>
+      <input id="lE" type="email" placeholder="ئیمەیڵ" dir="ltr" style="text-align:start"
+        class="w-full bg-bg border border-white/10 rounded-xl py-3 px-4 text-sm outline-none focus:border-acc/60 transition placeholder:text-mut/40">
+      <input id="lP" type="password" placeholder="وشەی نهێنی" dir="ltr" style="text-align:start"
+        class="w-full bg-bg border border-white/10 rounded-xl py-3 px-4 text-sm outline-none focus:border-acc/60 transition placeholder:text-mut/40">
+      <p id="lErr" class="hidden text-xs text-rose-400"></p>
+      <button class="w-full rounded-xl bg-gradient-to-l from-acc to-acc2 py-3 font-bold text-white shadow-glow hover:opacity-90 transition">چونەژوورەوە</button>
+    </form>
+
+    <form id="fSignup" class="hidden space-y-3.5" novalidate>
+      <input id="sN" type="text" placeholder="ناوی بەکارهێنەر"
+        class="w-full bg-bg border border-white/10 rounded-xl py-3 px-4 text-sm outline-none focus:border-acc/60 transition placeholder:text-mut/40">
+      <input id="sE" type="email" placeholder="ئیمەیڵ" dir="ltr" style="text-align:start"
+        class="w-full bg-bg border border-white/10 rounded-xl py-3 px-4 text-sm outline-none focus:border-acc/60 transition placeholder:text-mut/40">
+      <input id="sP" type="password" placeholder="وشەی نهێنی (لانیکەم 6 پیت)" dir="ltr" style="text-align:start"
+        class="w-full bg-bg border border-white/10 rounded-xl py-3 px-4 text-sm outline-none focus:border-acc/60 transition placeholder:text-mut/40">
+      <p id="sErr" class="hidden text-xs text-rose-400"></p>
+      <button class="w-full rounded-xl bg-gradient-to-l from-acc to-acc2 py-3 font-bold text-white shadow-glow hover:opacity-90 transition">دروستکردنی هەژمار</button>
+    </form>
+
+    <div class="flex items-center gap-3 my-5">
+      <span class="h-px flex-1 bg-white/10"></span><span class="text-xs text-mut">یان</span><span class="h-px flex-1 bg-white/10"></span>
+    </div>
+
+    <button id="gBtn" class="w-full flex items-center justify-center gap-3 rounded-xl border border-white/10 bg-bg hover:bg-sf2 py-3 text-sm font-bold transition">
+      <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      بە گووگڵ بژوورەوە
+    </button>
+
+    <p class="mt-5 text-center text-[13px] text-mut">
+      <span id="swQ">هەژمارت نییە؟</span>
+      <button id="swB" class="text-acc font-bold hover:opacity-80 transition">خۆتۆمار بکە</button>
+    </p>
+  </div>
+</div>
+
+<!-- تۆست + گەڕانەوە بۆ سەرەوە -->
+<div id="toasts" class="fixed bottom-5 inset-x-0 z-[95] flex flex-col items-center gap-2 pointer-events-none px-4"></div>
+<button id="toTop" class="fixed bottom-5 start-5 z-40 w-11 h-11 rounded-full border border-white/10 bg-sf/90 backdrop-blur grid place-items-center text-mut hover:text-acc transition" aria-label="بۆ سەرەوە">
+  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script>
+/* ───── یارمەتیدەرەکان ───── */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const img=(s,w=600,h=900)=>`https://picsum.photos/seed/${s}/${w}/${h}.jpg`;
+const STAR='<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>';
+const HEART=f=>`<svg class="w-4 h-4" viewBox="0 0 24 24" fill="${f?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`;
+const PLAY='<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="m7 4.5 13 7.5-13 7.5z"/></svg>';
+
+/* ───── داتا ───── */
+const GENRES=['ئەکشن','شۆنێن','سێینن','فانتازیا','سەرکێشی','دراما','ڕۆمانس','کۆمیدی','نهێنی','دەروونی','وەرزشی'];
+const A=[
+ {id:1, t:'سۆلۆ لێڤڵینگ', en:'Solo Leveling', seed:'solo-ow', g:['ئەکشن','فانتازیا','سەرکێشی'], r:8.7, eps:25, st:'بەردەوامە', y:2024, v:19.8, le:25, d:'سانگ جین وو، لاوازترین شەڕکەری نێو شوێنەوارەکان، ژیانی دەگۆڕێت کاتێک سیستەمێکی نهێنی هەڵی دەبژێرێت و ڕێگای بەهێزبوون دەکاتەوە.'},
+ {id:2, t:'هێرش بۆ سەر تیتانەکان', en:'Attack on Titan', seed:'aot-ow', g:['ئەکشن','دراما','سێینن'], r:9.1, eps:89, st:'تەواوبووە', y:2013, v:24.5, d:'مرۆڤایەتی لە پشت دیوارەکاندا لە تیتانەکان دەپارێزرێت — تا ڕۆژێک دیوارەکە دەشکێت و ئێرن سوێند دەخوات تۆڵە بکاتەوە.'},
+ {id:3, t:'وەن پییس', en:'One Piece', seed:'onepiece-ow', g:['ئەکشن','شۆنێن','سەرکێشی'], r:9.0, eps:1122, st:'بەردەوامە', y:1999, v:35.6, le:1122, d:'لوفی مێش گەنج بەدوای گەنجینەیەکی ئەفسانەییدا دەگەڕێت و بە ڕێگادا هاوڕێیانی دەریایی بەهێز کۆدەکاتەوە.'},
+ {id:4, t:'جوجوتسو کایسن', en:'Jujutsu Kaisen', seed:'jjk-ow', g:['ئەکشن','شۆنێن','فانتازیا'], r:8.8, eps:47, st:'بەردەوامە', y:2020, v:21.3, le:47, d:'یوجی دوای خواردنی پەنجەی نەفرەتداو، دەچێتە قوتابخانەی جادووگەرەکان بۆ شەڕکردن لەگەڵ نەفرەتەکان.'},
+ {id:5, t:'دێمۆن سلەیەر', en:'Demon Slayer', seed:'ds-ow', g:['ئەکشن','شۆنێن','فانتازیا'], r:8.6, eps:55, st:'بەردەوامە', y:2019, v:22.7, le:55, d:'تانجیرۆ دەبێتە کوشکاری دێمۆن بۆ ئەوەی خوشکەکەی بگەڕێنێتەوە بە شێوەی مرۆڤ.'},
+ {id:6, t:'فریرێن', en:'Frieren', seed:'frieren-ow', g:['فانتازیا','دراما','سەرکێشی'], r:9.0, eps:28, st:'بەردەوامە', y:2023, v:18.2, le:28, d:'دوای شکستنادانی شەیتانەکە، جادووگەری ئێلف فریرێن گەشتێکی نوێ دەست پێدەکات بۆ تێگەیشتن لە واتای مرۆڤایەتی.'},
+ {id:7, t:'ئۆشی نۆ کۆ', en:'Oshi no Ko', seed:'oshi-ow', g:['دراما','نهێنی','دەروونی'], r:8.5, eps:24, st:'بەردەوامە', y:2023, v:14.9, le:24, d:'دوای ڕووداوێکی تراژیدی، دوو قورچانی ئیدۆل لە نێوان درەوشانەوە و تاریکی جیهانی شۆوبیزدا دەژین.'},
+ {id:8, t:'ڤینلاند ساگا', en:'Vinland Saga', seed:'vinland-ow', g:['ئەکشن','دراما','سێینن'], r:8.8, eps:48, st:'تەواوبووە', y:2019, v:12.4, d:'تۆرفین گەنج لە ناو جەنگەکانی ڤایکینگەکاندا بەدوای وڵاتێکدا دەگەڕێت کە جەنگی تێدا نەبێت.'},
+ {id:9, t:'دێث نۆت', en:'Death Note', seed:'dn-ow', g:['نهێنی','دەروونی'], r:9.0, eps:37, st:'تەواوبووە', y:2006, v:26.8, d:'قوتابییەکی زیرەک دەفتەرێک دەدۆزێتەوە کە هەر ناوێک پێی بنووسرێت دەمرێت — و پیرۆزێکی زیرەک بەدوایدا دێت.'},
+ {id:10,t:'سپای ئێکس فامیلی', en:'Spy x Family', seed:'sxf-ow', g:['کۆمیدی','ئەکشن'], r:8.4, eps:37, st:'بەردەوامە', y:2022, v:15.3, le:37, d:'سیخورەکی پڕەفەیشناڵ خێزانێکی درۆ دروست دەکات — بەبێ ئەوەی بزانێت ژنەکەی تێکەرە و کچەکەی خوێنەری بیرە.'},
+ {id:11,t:'بلو لۆک', en:'Blue Lock', seed:'bl-ow', g:['وەرزشی','شۆنێن'], r:8.2, eps:38, st:'بەردەوامە', y:2022, v:10.8, le:38, d:'300 هێرشبەری گەنج لە زیندانێکی تایبەتدا کێبڕکێ دەکەن بۆ ئەوەی ببنە هێرشبەری ژمارە یەکی ژاپۆن.'},
+ {id:12,t:'چەینسۆ مەن', en:'Chainsaw Man', seed:'csm-ow', g:['ئەکشن','شۆنێن'], r:8.5, eps:12, st:'تەواوبووە', y:2022, v:16.1, d:'دێنجی هەژار بە کورسییەکی دەماردەوە و دەبێتە چەینسۆ مەن — ڕاوچیی دێمۆنەکان بۆ حکومەت.'},
+ {id:13,t:'کاگویا: خۆشەویستی جەنگە', en:'Kaguya-sama', seed:'kag-ow', g:['ڕۆمانس','کۆمیدی'], r:8.4, eps:37, st:'بەردەوامە', y:2019, v:12.9, le:37, d:'دوو سەرۆکی ئەنجومەنی قوتابیان خۆشیان دەوێت — هەردووکیان چاوەڕێ دەکەن ئەوی تر دانی پێدا بنێت.'},
+ {id:14,t:'ڤایۆلێت ئێڤەرگاردن', en:'Violet Evergarden', seed:'violet-ow', g:['دراما','فانتازیا'], r:8.7, eps:13, st:'تەواوبووە', y:2018, v:10.5, d:'کچێکی سەربازی پێشوو دەبێتە نووسەری نامە بۆ ئەوەی لە واتای «خۆشەویست دەکەم» تێبگەیت.'},
+ {id:15,t:'ناوی تۆ', en:'Your Name', seed:'yourname-ow', g:['ڕۆمانس','دراما','فانتازیا'], r:8.9, eps:1, st:'فیلم', y:2016, v:17.5, d:'کوڕێک و کچێک بە شێوەیەکی سەیر لە جەستەی یەکتردا دەخەون — و چارەنووسێکیان بە یەکەوە بەستراوەتەوە.'},
+ {id:16,t:'سوزومێ', en:'Suzume', seed:'suzume-ow', g:['فانتازیا','سەرکێشی'], r:8.4, eps:1, st:'فیلم', y:2022, v:11.1, d:'کچێک لەگەڵ گەنجێک دەگەڕێت بۆ داخستنی دەرگاکانی کارەسات پێش ئەوەی هەموو وڵاتەکە بە خەتەر بکەون.'}
+];
+const TEAM=[
+ {n:'ئارام محەمەد', r:'دامەزرێنەر', l:'ئ'},
+ {n:'تارا عومەر', r:'وەرگێڕان', l:'ت'},
+ {n:'دیار ئەحمەد', r:'پەرەپێدان', l:'د'}
+];
+
+/* ───── حاڵەت ───── */
+let WL=new Set();
+try{WL=new Set(JSON.parse(localStorage.getItem('ow_wl2')||'[]'))}catch(e){}
+const ov={q:'',g:new Set(),wl:false};
+const getUser=()=>{try{return JSON.parse(localStorage.getItem('ow_u')||sessionStorage.getItem('ow_u')||'null')}catch(e){return null}};
+const setUser=u=>{try{localStorage.removeItem('ow_u');sessionStorage.removeItem('ow_u');if(u)(u.rem?localStorage:sessionStorage).setItem('ow_u',JSON.stringify(u))}catch(e){};renderAuth()};
+
+/* ───── تۆست ───── */
+function toast(msg,err=false){
+  const t=document.createElement('div');
+  t.className='tin pointer-events-auto flex items-center gap-2.5 rounded-2xl border px-4 py-3 text-sm font-semibold shadow-2xl max-w-sm '+(err?'border-rose-500/30 bg-sf text-rose-300':'border-acc/30 bg-sf text-tx');
+  t.innerHTML=`<span class="w-2 h-2 rounded-full shrink-0 ${err?'bg-rose-400':'bg-acc'}"></span>${msg}`;
+  $('#toasts').appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='.3s';setTimeout(()=>t.remove(),320)},3000);
+}
+
+/* ───── هێرۆ سلایدەر ───── */
+const FEAT=[A[0],A[5],A[1]];
+let hi=0,hTimer;
+function heroSlide(i){
+  hi=i;const a=FEAT[i];
+  $$('#heroBgs .hbg').forEach((el,j)=>el.style.opacity=j===i?'1':'0');
+  $$('#heroDots button').forEach((d,j)=>{d.className='h-1 rounded-full transition-all duration-500 '+(j===i?'w-8 bg-acc':'w-3 bg-white/25 hover:bg-white/50')});
+  const c=$('#heroCt');
+  c.innerHTML=`
+    <div class="hin max-w-2xl">
+      <div class="flex items-center gap-2.5 text-[13px] font-bold text-acc mb-4">
+        <span class="w-6 h-px bg-acc"></span> ئێستا بەردەستە بە ژێرنووسی کوردی
+      </div>
+      <h1 class="text-3xl sm:text-5xl lg:text-[3.4rem] font-black leading-[1.25]">${a.t}</h1>
+      <p class="font-g text-mut text-sm mt-2" dir="ltr" style="text-align:start">${a.en}</p>
+      <p class="text-mut leading-7 mt-4 line-clamp-2">${a.d}</p>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-5 text-sm text-mut">
+        <span class="flex items-center gap-1.5 text-amber-300 font-bold" dir="ltr">${STAR}${a.r}</span>
+        <span dir="ltr" class="font-g">${a.y}</span>
+        <span>${a.st==='فیلم'?'فیلم':a.eps+' ئەلقە'}</span>
+        <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>ژێرنووسی کوردی</span>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-7">
+        <button data-play class="flex items-center gap-2.5 rounded-full bg-gradient-to-l from-acc to-acc2 px-7 py-3.5 font-bold text-white shadow-glow hover:-translate-y-0.5 hover:opacity-90 transition">${PLAY} سەیرکردن</button>
+        <button data-id="${a.id}" class="det-open rounded-full border border-white/15 hover:border-white/40 hover:bg-white/5 px-7 py-3.5 font-bold transition">زیاتر بزانە</button>
+      </div>
+    </div>`;
+}
+function initHero(){
+  $('#heroBgs').innerHTML=FEAT.map(a=>`
+    <div class="hbg absolute inset-0 transition-opacity duration-1000" style="opacity:0">
+      <img src="${img(a.seed,1600,900)}" alt="${a.t}" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/50 to-bg/20"></div>
+    </div>`).join('');
+  $('#heroDots').innerHTML=FEAT.map((_,i)=>`<button data-i="${i}" class="h-1 rounded-full" aria-label="سلاید ${i+1}"></button>`).join('');
+  $('#heroDots').addEventListener('click',e=>{const b=e.target.closest('button');if(b){heroSlide(+b.dataset.i);restartHero()}});
+  heroSlide(0);
+}
+function restartHero(){clearInterval(hTimer);hTimer=setInterval(()=>heroSlide((hi+1)%FEAT.length),6500)}
+
+/* ───── کارتەکان ───── */
+function epCard(a){
+  return `<article class="shrink-0 w-[280px] sm:w-[310px] snap-start group cursor-pointer" data-id="${a.id}">
+    <div class="relative aspect-video rounded-2xl overflow-hidden border border-white/[.06] bg-sf">
+      <img loading="lazy" src="${img(a.seed,640,360)}" alt="${a.t}" class="w-full h-full object-cover transition duration-700 group-hover:scale-[1.06]">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/10"></div>
+      <button class="wl-btn absolute top-2.5 end-2.5 w-9 h-9 grid place-items-center rounded-full bg-black/50 backdrop-blur border border-white/10 transition ${WL.has(a.id)?'text-acc':'text-white/80 hover:text-acc'}" data-id="${a.id}" aria-label="خوازراوە">${HEART(WL.has(a.id))}</button>
+      <span class="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition duration-300">
+        <span class="w-14 h-14 rounded-full bg-acc/90 grid place-items-center text-white shadow-glow scale-75 group-hover:scale-100 transition duration-300">${PLAY}</span>
+      </span>
+      <span class="absolute bottom-3 start-3.5 rounded-lg bg-black/60 backdrop-blur px-2.5 py-1.5 text-xs font-bold">ئەلقەی <span class="font-g" dir="ltr">${a.le}</span></span>
+    </div>
+    <div class="pt-3 flex items-center justify-between gap-3">
+      <h3 class="font-bold truncate group-hover:text-acc transition">${a.t}</h3>
+      <span class="shrink-0 flex items-center gap-1 text-xs font-bold text-amber-300" dir="ltr">${STAR}${a.r}</span>
+    </div>
+  </article>`;
+}
+function popCard(a,i){
+  return `<article class="group cursor-pointer" data-id="${a.id}">
+    <div class="relative aspect-[2/3] rounded-2xl overflow-hidden border border-white/[.06] bg-sf transition duration-300 group-hover:-translate-y-1.5 group-hover:border-acc/40">
+      <img loading="lazy" src="${img(a.seed)}" alt="${a.t}" class="w-full h-full object-cover transition duration-700 group-hover:scale-[1.06]">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+      <button class="wl-btn absolute top-2.5 end-2.5 w-9 h-9 grid place-items-center rounded-full bg-black/50 backdrop-blur border border-white/10 transition ${WL.has(a.id)?'text-acc':'text-white/80 hover:text-acc'}" data-id="${a.id}" aria-label="خوازراوە">${HEART(WL.has(a.id))}</button>
+      <span class="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition duration-300">
+        <span class="w-12 h-12 rounded-full bg-acc/90 grid place-items-center text-white shadow-glow">${PLAY}</span>
+      </span>
+      <span class="absolute bottom-1.5 end-3 font-g font-bold text-5xl ghost-num" dir="ltr">${String(i+1).padStart(2,'0')}</span>
+    </div>
+    <h3 class="mt-2.5 font-bold text-sm truncate group-hover:text-acc transition">${a.t}</h3>
+    <p class="text-xs text-mut truncate mt-0.5">${a.g.join(' · ')}</p>
+  </article>`;
+}
+
+/* ───── ڕێندەر ───── */
+function renderAll(){
+  $('#latestRow').innerHTML=A.filter(a=>a.le).map(epCard).join('');
+  $('#popGrid').innerHTML=[...A].sort((x,y)=>y.v-x.v).slice(0,10).map(popCard).join('');
+  $('#genreRow').innerHTML=GENRES.map(g=>{
+    const c=A.filter(a=>a.g.includes(g)).length;
+    return `<button class="gchip flex items-center gap-2 rounded-full border border-white/10 bg-sf px-5 py-2.5 text-sm font-semibold text-mut hover:text-tx hover:border-acc/60 hover:bg-acc/10 transition" data-g="${g}">
+      ${g} <span class="text-xs font-g text-acc" dir="ltr">${c}</span>
+    </button>`;
+  }).join('');
+  $('#teamGrid').innerHTML=TEAM.map(m=>`
+    <div class="rounded-3xl border border-white/[.07] bg-sf p-6 text-center hover:border-acc/40 transition group">
+      <span class="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-l from-acc/20 to-acc2/20 border border-acc/30 font-black text-xl text-acc group-hover:scale-105 transition">${m.l}</span>
+      <h4 class="mt-4 font-bold">${m.n}</h4>
+      <p class="text-xs text-mut mt-1">${m.r}</p>
+    </div>`).join('');
+}
+
+/* ───── گەڕان ───── */
+function ovResults(){
+  const q=ov.q.trim().toLowerCase();
+  const list=A.filter(a=>{
+    if(ov.wl&&!WL.has(a.id))return false;
+    if(ov.g.size&&![...ov.g].some(g=>a.g.includes(g)))return false;
+    if(q&&!(a.t.toLowerCase().includes(q)||a.en.toLowerCase().includes(q)))return false;
+    return true;
+  });
+  $('#ovCount').textContent=`${list.length} ئەنیمێ دۆزرایەوە`;
+  $('#ovEmpty').classList.toggle('hidden',!!list.length);
+  $('#ovGrid').innerHTML=list.map(a=>`
+    <button class="ov-item group text-start cursor-pointer" data-id="${a.id}">
+      <div class="relative aspect-[2/3] rounded-2xl overflow-hidden border border-white/[.06] bg-sf group-hover:border-acc/50 transition">
+        <img loading="lazy" src="${img(a.seed,300,450)}" alt="${a.t}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+        <span class="absolute bottom-2 end-2 flex items-center gap-1 rounded-lg bg-black/60 backdrop-blur px-2 py-1 text-[11px] font-bold text-amber-300" dir="ltr">${STAR}${a.r}</span>
+      </div>
+      <p class="mt-2 text-sm font-bold truncate">${a.t}</p>
+    </button>`).join('');
+}
+function ovChips(){
+  const wl=`<button class="ovchip flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-semibold border transition ${ov.wl?'bg-acc/15 border-acc/60 text-acc':'border-white/10 text-mut hover:text-tx'}" data-wl="1">♡ خوازراوەکانم <span class="font-g text-xs" dir="ltr">${WL.size}</span></button>`;
+  $('#ovGenres').innerHTML=wl+GENRES.map(g=>
+    `<button class="ovchip rounded-full px-4 py-2 text-[13px] font-semibold border transition ${ov.g.has(g)?'bg-acc/15 border-acc/60 text-acc':'border-white/10 text-mut hover:text-tx'}" data-g="${g}">${g}</button>`
+  ).join('');
+}
+function openSearch(){closeAll();$('#searchOv').classList.remove('hidden');document.body.style.overflow='hidden';$('#searchOv .panel').classList.add('tin');ovChips();ovResults();setTimeout(()=>$('#bigSearch').focus(),100)}
+
+/* ───── مۆداڵەکان ───── */
+function openDet(id){
+  const a=A.find(x=>x.id===id);if(!a)return;
+  const eps=[];if(a.st!=='فیلم')for(let n=Math.max(1,a.eps-5);n<=a.eps;n++)eps.push(n);
+  $('#detBody').innerHTML=`
+    <div class="relative h-56 sm:h-64">
+      <img src="${img(a.seed,900,450)}" alt="${a.t}" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-sf via-sf/30 to-transparent"></div>
+      <div class="absolute bottom-5 start-6 end-6">
+        <h2 class="text-xl sm:text-2xl font-black">${a.t}</h2>
+        <p class="font-g text-mut text-sm mt-1" dir="ltr" style="text-align:start">${a.en} · ${a.y}</p>
+      </div>
+    </div>
+    <div class="p-6 sm:p-8">
+      <p class="text-mut leading-8 text-[15px]">${a.d}</p>
+      <div class="flex flex-wrap gap-2 mt-4">${a.g.map(g=>`<span class="rounded-full border border-white/10 px-3.5 py-1.5 text-xs font-semibold text-mut">${g}</span>`).join('')}</div>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-5 text-sm text-mut">
+        <span class="flex items-center gap-1.5 text-amber-300 font-bold" dir="ltr">${STAR}${a.r}</span>
+        <span>بارودۆخ: <b class="text-tx">${a.st}</b></span>
+        <span>ئەلقە: <b class="text-tx font-g" dir="ltr">${a.eps}</b></span>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-2.5 mt-6">
+        ${a.st==='فیلم'
+          ?`<button data-play class="sm:col-span-2 w-full flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-bg hover:border-acc/50 hover:bg-acc/10 py-3 text-sm font-bold transition">فیلمی تەواو — ژێرنووسی کوردی</button>`
+          :eps.slice().reverse().map(n=>`<button data-play class="flex items-center justify-between rounded-xl border border-white/10 bg-bg hover:border-acc/50 hover:bg-acc/10 px-4 py-3 text-sm font-bold transition"><span>ئەلقەی <span class="font-g" dir="ltr">${n}</span></span><span class="text-xs text-mut font-normal">کوردی ✓</span></button>`).join('')}
+      </div>
+      <button class="wl-btn w-full mt-4 flex items-center justify-center gap-2 rounded-xl border ${WL.has(a.id)?'border-acc/50 bg-acc/10 text-acc':'border-white/10 hover:border-acc/50'} py-3 text-sm font-bold transition" data-id="${a.id}">${HEART(WL.has(a.id))} ${WL.has(a.id)?'لابردن لە خوازراوەکان':'زیادکردن بۆ خوازراوەکان'}</button>
+    </div>`;
+  $('#detModal').classList.remove('hidden');$('#detModal').classList.add('flex');
+  document.body.style.overflow='hidden';
+}
+function openAuth(tab='l'){
+  closeAll();
+  $('#authModal').classList.remove('hidden');$('#authModal').classList.add('flex');
+  document.body.style.overflow='hidden';setTab(tab);
+}
+function setTab(t){
+  const l=t==='l';
+  $('#tabL').className='tabb py-2.5 rounded-xl text-sm font-bold transition '+(l?'bg-acc text-white shadow-glow':'text-mut');
+  $('#tabS').className='tabb py-2.5 rounded-xl text-sm font-bold transition '+(!l?'bg-acc text-white shadow-glow':'text-mut');
+  $('#fLogin').classList.toggle('hidden',!l);
+  $('#fSignup').classList.toggle('hidden',l);
+  $('#authTtl').textContent=l?'چونەژوورەوە':'خۆتۆمارکردن';
+  $('#swQ').textContent=l?'هەژمارت نییە؟':'هەژمارت هەیە؟';
+  $('#swB').textContent=l?'خۆتۆمار بکە':'بژوورەوە';
+  $('#lErr').classList.add('hidden');$('#sErr').classList.add('hidden');
+}
+function closeAll(){
+  ['searchOv','detModal','authModal'].forEach(id=>{$('#'+id).classList.add('hidden');$('#'+id).classList.remove('flex')});
+  $('#drawerBk').classList.add('hidden');$('#drawer').classList.add('-translate-x-full');
+  $('#userPanel').classList.add('hidden');
+  document.body.style.overflow='';
+}
+const shErr=(id,m)=>{const e=$(id);e.textContent=m;e.classList.remove('hidden')};
+
+/* ───── ئۆث ───── */
+function renderAuth(){
+  const u=getUser();
+  $('#loginBtn').classList.toggle('hidden',!!u);
+  $('#userArea').classList.toggle('hidden',!u);
+  $('#userArea').classList.toggle('sm:block',!!u);
+  if(u){$('#uNm').textContent=u.name;$('#uAv').textContent=(u.name.trim()[0]||'O')}
+}
+ $('#tabL').onclick=()=>setTab('l');$('#tabS').onclick=()=>setTab('s');
+ $('#swB').onclick=()=>setTab($('#fLogin').classList.contains('hidden')?'l':'s');
+ $('#fLogin').onsubmit=e=>{
+  e.preventDefault();
+  const em=$('#lE').value.trim(),pw=$('#lP').value;
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em))return shErr('#lErr','ئیمەیڵێکی دروست بنووسە');
+  if(pw.length<6)return shErr('#lErr','وشەی نهێنی دەبێت لانیکەم 6 پیت بێت');
+  const n=em.split('@')[0];setUser({name:n,email:em,rem:true});
+  closeAll();toast(`بەخێربێیتەوە، ${n}!`);
+};
+ $('#fSignup').onsubmit=e=>{
+  e.preventDefault();
+  const n=$('#sN').value.trim(),em=$('#sE').value.trim(),pw=$('#sP').value;
+  if(n.length<2)return shErr('#sErr','تکایە ناوەکەت بنووسە');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em))return shErr('#sErr','ئیمەیڵێکی دروست بنووسە');
+  if(pw.length<6)return shErr('#sErr','وشەی نهێنی دەبێت لانیکەم 6 پیت بێت');
+  setUser({name:n,email:em,rem:true});
+  closeAll();toast('هەژمارەکەت دروستکرا — بەخێربێی!');
+};
+const gH=$('#gBtn').innerHTML;
+ $('#gBtn').onclick=()=>{
+  const b=$('#gBtn');b.disabled=true;
+  b.innerHTML='<span class="w-4 h-4 rounded-full border-2 border-white/25 border-t-white animate-spin"></span> چاوەڕوان بە...';
+  setTimeout(()=>{b.disabled=false;b.innerHTML=gH;
+    setUser({name:'بەکارهێنەری گووگڵ',email:'user@gmail.com',rem:true});
+    closeAll();toast('بە گووگڵ چوویتە ژوورەوە ✓');
+  },900);
+};
+
+/* ───── خوازراوەکان ───── */
+function toggleWl(id){
+  const a=A.find(x=>x.id===id);if(!a)return;
+  WL.has(id)?WL.delete(id):WL.add(id);
+  toast(WL.has(id)?`${a.t} زیادکرا بۆ خوازراوەکان`:`${a.t} لە خوازراوەکان لابرا`,!WL.has(id));
+  try{localStorage.setItem('ow_wl2',JSON.stringify([...WL]))}catch(e){}
+  $$(`.wl-btn[data-id="${id}"]`).forEach(b=>{b.innerHTML=HEART(WL.has(id));b.classList.toggle('text-acc',WL.has(id))});
+  ovChips();if(!$('#searchOv').classList.contains('hidden'))ovResults();
+}
+
+/* ───── کڵیکی گشتی ───── */
+document.addEventListener('click',e=>{
+  const wl=e.target.closest('.wl-btn');
+  if(wl){toggleWl(+wl.dataset.id);return}
+  if(e.target.closest('[data-play]')){toast('پەخشکردن بەم زووانە دەست پێدەکات...');return}
+  if(e.target.closest('[data-x]')){closeAll();return}
+  const chip=e.target.closest('.ovchip');
+  if(chip){
+    if(chip.dataset.wl)ov.wl=!ov.wl;
+    else{const g=chip.dataset.g;ov.g.has(g)?ov.g.delete(g):ov.g.add(g)}
+    ovChips();ovResults();return;
+  }
+  const gc=e.target.closest('.gchip');
+  if(gc){ov.g=new Set([gc.dataset.g]);ov.wl=false;openSearch();return}
+  const ovI=e.target.closest('.ov-item');
+  if(ovI){closeAll();setTimeout(()=>openDet(+ovI.dataset.id),80);return}
+  const card=e.target.closest('article[data-id], .det-open');
+  if(card){openDet(+card.dataset.id);return}
+  const soc=e.target.closest('.soc');
+  if(soc){toast(`پەیوەندی ${soc.dataset.s} بەم زووانە چالاک دەبێت`);return}
+  if(!e.target.closest('#userArea'))$('#userPanel').classList.add('hidden');
+});
+
+/* ───── هێدر و مێنیو ───── */
+ $('#burger').onclick=()=>{$('#drawerBk').classList.remove('hidden');$('#drawer').classList.remove('-translate-x-full');document.body.style.overflow='hidden'};
+ $('#drawerX').onclick=()=>closeAll();
+ $('#drawerBk').onclick=()=>closeAll();
+ $$('.drawer-link').forEach(a=>a.addEventListener('click',closeAll));
+ $('#drawerLogin').onclick=()=>openAuth('l');
+ $('#loginBtn').onclick=()=>openAuth('l');
+ $('#searchBtn').onclick=openSearch;
+ $('#searchX').onclick=closeAll;
+ $('#userBtn').onclick=e=>{e.stopPropagation();$('#userPanel').classList.toggle('hidden')};
+ $('#logoutBtn').onclick=()=>{setUser(null);closeAll();toast('بە سەرکەوتوویی دەرچوویت')};
+ $('#uWl').onclick=()=>{ov.wl=true;ov.g.clear();openSearch()};
+
+/* ───── گەڕان + هێرۆ تایمەر ───── */
+let qT;
+ $('#bigSearch').addEventListener('input',e=>{clearTimeout(qT);qT=setTimeout(()=>{ov.q=e.target.value;ovResults()},140)});
+
+/* ───── سکڕۆڵ ───── */
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  $('#hdrBg').style.opacity=y>30?'1':'0';
+  $('#toTop').classList.toggle('show',y>600);
+  const h=document.documentElement.scrollHeight-innerHeight;
+  $('#progress').style.transform=`scaleX(${h>0?y/h:0})`;
+},{passive:true});
+ $('#toTop').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+ $('#ltL').onclick=()=>$('#latestRow').scrollBy({left:-360,behavior:'smooth'});
+ $('#ltR').onclick=()=>$('#latestRow').scrollBy({left:360,behavior:'smooth'});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+
+/* ───── ڕیڤیل ───── */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.1});
+ $$('.rv').forEach(el=>io.observe(el));
+
+/* ───── دەستپێک ───── */
+initHero();restartHero();renderAll();renderAuth();
+</script>
 </body>
 </html>
