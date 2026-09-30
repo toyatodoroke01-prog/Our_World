@@ -29,11 +29,8 @@ img{display:block}
 ::selection{background:var(--accent);color:#0d0d12}
 .wrap{max-width:1200px;margin:0 auto;padding:0 14px}
 .mut{color:var(--mut)}
-
-/* ============ ANIMATIONS ============ */
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes toastIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
-@keyframes floatY{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-16px) rotate(4deg)}}
 #view{animation:fadeUp .35s ease both}
 
 /* ============ HEADER ============ */
@@ -42,11 +39,11 @@ header{
   background:rgba(10,10,15,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
 }
-.header-in{max-width:1200px;margin:0 auto;height:100%;padding:0 14px;display:flex;align-items:center;gap:10px}
+.header-in{max-width:1200px;margin:0 auto;height:100%;padding:0 10px;display:flex;align-items:center;gap:8px}
 .icon-btn{
   width:38px;height:38px;border-radius:12px;flex:none;
   background:var(--card);border:1px solid var(--line);color:var(--txt);
-  display:inline-flex;align-items:center;justify-content:center;transition:.2s;font-size:16px;
+  display:inline-flex;align-items:center;justify-content:center;transition:.2s;font-size:15px;
 }
 .icon-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
 .icon-btn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -54,7 +51,7 @@ header{
 .icon-btn.tg:hover{background:var(--accent);color:#0d0d12}
 .brand{display:flex;align-items:center;gap:10px;margin-inline-end:auto;min-width:0}
 .brand img{height:40px;width:40px;border-radius:11px;border:1px solid var(--line);object-fit:cover}
-.brand b{font-size:16.5px;display:block;line-height:1.25;white-space:nowrap}
+.brand b{font-size:16px;display:block;line-height:1.25;white-space:nowrap}
 .brand small{font-size:10px;color:var(--mut);display:block;line-height:1.3;white-space:nowrap}
 .top-links{display:none;gap:4px;margin-inline-start:8px}
 .top-links a{padding:8px 13px;border-radius:10px;font-size:13.5px;color:var(--mut);transition:.2s}
@@ -65,7 +62,7 @@ header{
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:110;opacity:0;pointer-events:none;transition:.3s}
 .scrim.on{opacity:1;pointer-events:auto}
 .drawer{
-  position:fixed;top:0;bottom:0;inset-inline-start:auto;right:0;width:min(330px,88vw);z-index:120;
+  position:fixed;top:0;bottom:0;right:0;width:min(330px,88vw);z-index:120;
   background:#10101a;border-inline-start:1px solid var(--line);
   transform:translateX(105%);transition:transform .38s cubic-bezier(.22,1,.36,1);
   overflow-y:auto;padding:16px 16px 30px;
@@ -99,35 +96,35 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
 input::placeholder,textarea::placeholder{color:#5c5c6e}
 label{display:block;font-size:12.5px;color:var(--mut);margin:13px 2px 6px;font-weight:700}
 
-/* ============ HERO SLIDER ============ */
-.hero{position:relative;height:330px;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-top:14px;background:#0d0d15}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;pointer-events:none;display:flex;align-items:center;gap:16px;padding:22px}
-.hero-slide.on{opacity:1;pointer-events:auto}
-.hero-bg{position:absolute;inset:0}
-.hero-mark{position:absolute;left:4%;bottom:-6%;font-size:170px;opacity:.13;animation:floatY 9s ease-in-out infinite;filter:blur(1px)}
-.hero-info{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;gap:9px;align-items:flex-start}
-.hero-info h2{font-size:21px;line-height:1.35}
-.hero-chips{display:flex;flex-wrap:wrap;gap:6px}
-.hero-p{font-size:12.5px;color:#c9c9d6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:520px}
-.hero-poster{position:relative;flex:none;width:118px;aspect-ratio:2/3;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 12px 32px rgba(0,0,0,.5);transition:.2s}
-.hero-poster:hover{transform:scale(1.04)}
-.hero-poster .p-emoji{font-size:44px}
-.hero-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:5}
-.hero-dots button{width:8px;height:8px;border-radius:99px;border:none;background:rgba(255,255,255,.28);transition:.25s;padding:0}
-.hero-dots button.on{width:22px;background:var(--accent)}
+/* ============ FEATURED BOX ============ */
+.feat-box{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px}
+.feat-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.feat-head::before{content:'';width:4px;height:22px;background:var(--accent);border-radius:4px;flex:none}
+.feat-head h3{font-size:16px}
+.feat-head a{margin-inline-start:auto;color:var(--accent);font-size:12.5px;font-weight:700;transition:.2s}
+.feat-head a:hover{filter:brightness(1.2)}
+.feat-wrap{display:grid;gap:12px}
+.feat-big{position:relative;display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;transition:.25s}
+.feat-big:hover{border-color:var(--accent);transform:translateY(-3px)}
+.feat-big .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,9,.94) 12%,rgba(5,5,9,.3) 55%,rgba(5,5,9,.05))}
+.feat-info{position:absolute;bottom:0;inset-inline:0;padding:14px;display:flex;flex-direction:column;gap:7px;align-items:flex-start}
+.feat-info h2{font-size:17px;line-height:1.35}
+.feat-mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 
-/* ============ SECTION & CARDS ============ */
+/* ============ SECTIONS & CARDS ============ */
 section{margin-top:28px}
 .sec-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
 .sec-head::before{content:'';width:4px;height:22px;background:var(--accent);border-radius:4px;flex:none}
 .sec-head h3{font-size:16px}
 .sec-head a{margin-inline-start:auto;color:var(--accent);font-size:12.5px;font-weight:700;transition:.2s}
 .sec-head a:hover{filter:brightness(1.2)}
+.week-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(116px,1fr));gap:12px}
 .card{display:block;transition:.25s}
 .card:hover{transform:translateY(-4px)}
 .poster{position:relative;aspect-ratio:2/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:border-color .25s;display:block}
-.card:hover .poster,.hero-poster:hover{border-color:var(--accent)}
+.card:hover .poster{border-color:var(--accent)}
+.p-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .p-emoji{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:46px;text-shadow:0 6px 20px rgba(0,0,0,.5)}
 .p-grad{position:absolute;inset-inline:0;bottom:0;height:62%;background:linear-gradient(to top,rgba(6,6,10,.93),rgba(6,6,10,0))}
 .p-title{position:absolute;inset-inline:0;bottom:0;padding:9px 10px;font-size:12.5px;font-weight:700;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -135,8 +132,23 @@ section{margin-top:28px}
 .b-rate{inset-inline-start:8px;background:var(--gold);color:#221703}
 .b-type{inset-inline-end:8px;background:var(--accent);color:#0d0d12}
 .meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:7px;font-size:11px;color:var(--mut)}
+.hero-chips{display:flex;flex-wrap:wrap;gap:6px}
+.hero-p{font-size:12.5px;color:#c9c9d6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
-/* ============ JOIN BANNER / FOOTER ============ */
+/* ============ TRAILERS ============ */
+.trailer-row{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.trailer-row::-webkit-scrollbar{display:none}
+.trailer-card{flex:0 0 200px;scroll-snap-align:start;cursor:pointer}
+.t-thumb{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;border:1px solid var(--line);transition:.25s}
+.trailer-card:hover .t-thumb{border-color:var(--accent);transform:translateY(-3px)}
+.t-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.t-play span{width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;transition:.2s}
+.trailer-card:hover .t-play span{background:var(--accent);border-color:var(--accent);color:#0d0d12;transform:scale(1.1)}
+.t-title{font-size:12px;font-weight:700;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-frame{margin-top:14px;aspect-ratio:16/9;background:#000;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.t-frame iframe{width:100%;height:100%;border:0;display:block}
+
+/* ============ JOIN / FOOTER ============ */
 .join{margin:34px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 20px;text-align:center}
 .join h3{font-size:17px;margin-bottom:6px}
 .join p{font-size:12.5px;color:var(--mut);max-width:460px;margin:0 auto 16px}
@@ -144,10 +156,9 @@ section{margin-top:28px}
 footer{margin-top:36px;border-top:1px solid var(--line);padding:26px 0 20px}
 .footer-in{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
 .footer-in img{height:44px;border-radius:11px}
-footer .join-btns{margin-top:2px}
 footer small{color:var(--mut);font-size:11px}
 
-/* ============ PAGE HEADS / CATEGORIES ============ */
+/* ============ PAGES ============ */
 .page-head{margin-top:20px}
 .page-head h2{font-size:20px}
 .page-head p{font-size:12.5px;color:var(--mut)}
@@ -161,22 +172,20 @@ footer small{color:var(--mut);font-size:11px}
 .back-row{margin-top:16px}
 .back-row button{display:inline-flex;align-items:center;gap:8px;background:none;border:none;color:var(--mut);font-size:13px;padding:6px 0;transition:.2s}
 .back-row button:hover{color:var(--accent)}
-
-/* ============ SEARCH ============ */
 .search-big{margin-top:20px}
 .search-big input{padding:15px 18px;font-size:15px;border-radius:16px}
 .chip-row{display:flex;gap:8px;overflow-x:auto;padding:13px 2px;scrollbar-width:none}
 .chip-row::-webkit-scrollbar{display:none}
 .chip{flex:none;padding:7px 15px;border-radius:99px;background:var(--card);border:1px solid var(--line);color:var(--mut);font-size:12.5px;transition:.2s}
 .chip.on{background:var(--accent);border-color:var(--accent);color:#0d0d12;font-weight:700}
-.empty{padding:56px 16px;text-align:center;color:var(--mut)}
-.empty i{font-style:normal;font-size:44px;display:block;margin-bottom:10px}
+.empty{padding:44px 16px;text-align:center;color:var(--mut)}
+.empty i{font-style:normal;font-size:42px;display:block;margin-bottom:10px}
 .empty b{display:block;color:var(--txt);font-size:15px;margin-bottom:4px}
+.empty span{font-size:12.5px}
 
-/* ============ DETAIL ============ */
+/* ============ DETAIL / WATCH ============ */
 .d-hero{display:flex;gap:18px;margin-top:18px;align-items:flex-start}
 .d-poster{flex:none;width:150px;aspect-ratio:2/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);position:relative;box-shadow:0 14px 36px rgba(0,0,0,.5)}
-.d-poster .p-emoji{font-size:56px}
 .d-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 .d-info h2{font-size:19px;line-height:1.4}
 .g-chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -199,8 +208,6 @@ footer small{color:var(--mut);font-size:11px}
 .cmt-av{flex:none;width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
 .cmt b{font-size:13px}
 .cmt p{font-size:13px;color:#c9c9d6;margin-top:2px;word-break:break-word}
-
-/* ============ WATCH ============ */
 .player{margin-top:16px;aspect-ratio:16/9;background:#000;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;position:relative}
 .player iframe{width:100%;height:100%;border:0;display:block}
 .player .fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:20px}
@@ -209,15 +216,13 @@ footer small{color:var(--mut);font-size:11px}
 .watch-ctrl{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
 .note{display:flex;gap:9px;background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:11px 14px;font-size:11.5px;color:var(--mut);margin-top:14px}
 
-/* ============ TEAM ============ */
+/* ============ TEAM / MORE / ADMIN ============ */
 .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin-top:20px}
 .team-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 16px;text-align:center;transition:.28s}
 .team-card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 16px 40px rgba(0,0,0,.45)}
 .team-card img{width:112px;height:112px;border-radius:50%;object-fit:cover;margin:0 auto 14px;border:3px solid var(--accent);box-shadow:0 0 0 4px var(--accent-soft),0 10px 26px rgba(0,0,0,.4)}
 .team-card b{font-size:15.5px;display:block}
 .role{display:inline-block;margin-top:9px;padding:5px 14px;border-radius:99px;background:var(--accent-soft);color:var(--accent);font-size:11.5px;font-weight:700;border:1px solid var(--accent-soft)}
-
-/* ============ MORE / MENU ============ */
 .user-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;align-items:center;gap:13px;margin-top:18px}
 .u-av{flex:none;width:52px;height:52px;border-radius:50%;background:var(--accent);color:#0d0d12;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px}
 .user-box b{display:block;font-size:15px}
@@ -227,21 +232,19 @@ footer small{color:var(--mut);font-size:11px}
 .menu>:last-child{border-bottom:none}
 .menu button:hover,.menu a:hover{background:var(--accent-soft);color:var(--accent)}
 .menu .arr{margin-inline-start:auto;color:var(--mut);font-size:17px}
-
-/* ============ ADMIN ============ */
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
 .form-grid .full{grid-column:1/-1}
-.admin-row{display:flex;align-items:center;gap:10px;padding:12px 2px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.admin-row{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .admin-row:last-child{border:none}
 .admin-row b{font-size:13.5px}
 .tag{padding:2px 9px;border-radius:99px;font-size:10px;font-weight:700;background:var(--card2);border:1px solid var(--line);color:var(--mut)}
 .tag.acc{background:var(--accent-soft);color:var(--accent);border-color:transparent}
 .ar-btns{margin-inline-start:auto;display:flex;gap:7px}
-.ar-btns button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:#0e0e16;color:var(--txt);font-size:14px;transition:.2s;display:flex;align-items:center;justify-content:center}
+.ar-btns button{min-width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:#0e0e16;color:var(--txt);font-size:14px;transition:.2s;display:flex;align-items:center;justify-content:center}
 .ar-btns button:hover{border-color:var(--accent);color:var(--accent)}
-.ar-btns button.armed{background:var(--red);border-color:var(--red);color:#fff;width:auto;padding:0 12px;font-size:12px;font-weight:700}
+.ar-btns button.armed{background:var(--red);border-color:var(--red);color:#fff;padding:0 12px;font-size:12px;font-weight:700}
 
-/* ============ MODAL ============ */
+/* ============ MODAL / TOAST / NAV ============ */
 .modal-scrim{position:fixed;inset:0;background:rgba(0,0,0,.66);backdrop-filter:blur(4px);z-index:130;opacity:0;pointer-events:none;transition:.28s}
 .modal{position:fixed;z-index:131;inset-inline:0;bottom:0;background:#15151f;border:1px solid var(--line);border-radius:22px 22px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom));max-height:84vh;overflow-y:auto;transform:translateY(105%);transition:transform .38s cubic-bezier(.22,1,.36,1)}
 .modal-scrim.on{opacity:1;pointer-events:auto}
@@ -255,13 +258,9 @@ footer small{color:var(--mut);font-size:11px}
 .theme-dot.sel span{box-shadow:0 0 0 3px #15151f,0 0 0 5.5px #fff}
 .theme-dot.sel{color:var(--txt);font-weight:700}
 .m-btns{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}
-
-/* ============ TOASTS ============ */
 #toast-root{position:fixed;top:calc(var(--header-h) + 10px);left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:8px;width:min(360px,92vw);pointer-events:none}
 .toast{background:#181826;border:1px solid var(--line);border-inline-start:4px solid var(--accent);border-radius:13px;padding:11px 15px;font-size:13px;box-shadow:0 10px 34px rgba(0,0,0,.55);animation:toastIn .3s ease}
 .toast.err{border-inline-start-color:var(--red)}
-
-/* ============ BOTTOM NAV ============ */
 .bottom-nav{
   position:fixed;bottom:0;inset-inline:0;z-index:90;height:calc(var(--bottom-h) + env(safe-area-inset-bottom));
   background:rgba(14,14,22,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
@@ -273,24 +272,25 @@ footer small{color:var(--mut);font-size:11px}
 .bottom-nav button.active{color:var(--accent)}
 .bottom-nav button.active::before{content:'';position:absolute;top:0;width:26px;height:3px;background:var(--accent);border-radius:0 0 4px 4px}
 
-/* ============ DESKTOP ============ */
+/* ============ RESPONSIVE ============ */
 @media(min-width:640px){
-  .hero{height:370px}
+  .week-grid{grid-template-columns:repeat(4,1fr)}
   .grid-cards{grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:15px}
   .type-grid{grid-template-columns:repeat(4,1fr)}
   .gen-grid{grid-template-columns:repeat(6,1fr)}
   .d-poster{width:190px}
   .d-info h2{font-size:23px}
-  .form-grid{grid-template-columns:1fr 1fr}
+  .feat-wrap{grid-template-columns:1.7fr 1fr 1fr 1fr 1fr}
+  .feat-mini-grid{display:contents}
+  .feat-big{aspect-ratio:auto}
 }
 @media(min-width:900px){
   body{padding-bottom:0}
   .bottom-nav{display:none}
   .hamburger{display:none}
   .top-links{display:flex}
-  .modal{inset-inline:auto;left:50%;bottom:auto;top:50%;transform:translate(-50%,-46%) scale(.96);width:min(460px,92vw);border-radius:20px;opacity:0;transition:.28s}
+  .modal{inset-inline:auto;left:50%;bottom:auto;top:50%;transform:translate(-50%,-46%) scale(.96);width:min(480px,92vw);border-radius:20px;opacity:0;transition:.28s}
   .modal.on{transform:translate(-50%,-50%) scale(1);opacity:1}
-  .theme-grid{grid-template-columns:repeat(5,1fr)}
 }
 </style>
 </head>
@@ -322,7 +322,7 @@ footer small{color:var(--mut);font-size:11px}
     <a class="icon-btn tg" href="https://t.me/Our_World13" target="_blank" rel="noopener" aria-label="کەناڵی تێلگرام">
       <svg viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
     </a>
-    <a class="icon-btn" href="https://t.me/Our_World_Chat13" target="_blank" rel="noopener" aria-label="گروپی چات" title="گروپی چات 💬">💬</a>
+    <a class="icon-btn" href="https://t.me/Our_World_Chat13" target="_blank" rel="noopener" aria-label="گروپی چات">💬</a>
   </div>
 </header>
 
@@ -341,16 +341,14 @@ footer small{color:var(--mut);font-size:11px}
   <a class="d-tile" href="#/team"><i>👑</i>بەڕێوەبەران</a>
 </aside>
 
-<!-- ============ MAIN VIEW ============ -->
+<!-- ============ MAIN ============ -->
 <main class="wrap" id="view"></main>
 
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap footer-in">
     <img src="https://i.postimg.cc/rwD7KZYf/IMG-20260929-231244-779.jpg" alt="Our-World">
-    <div>
-      <b>Our-World</b><br><small class="mut">ئەنیمێ • مانگا • بە کوردی</small>
-    </div>
+    <div><b>Our-World</b><br><small class="mut">ئەنیمێ • مانگا • بە کوردی</small></div>
     <div class="join-btns">
       <a class="btn sm" href="https://t.me/Our_World13" target="_blank" rel="noopener">📡 کەناڵی تێلگرام</a>
       <a class="btn ghost sm" href="https://t.me/Our_World_Chat13" target="_blank" rel="noopener">گروپی چات 💬</a>
@@ -373,7 +371,7 @@ footer small{color:var(--mut);font-size:11px}
 
 <script>
 /* ================================================================
-   Our-World — Kurdish anime & manga streaming SPA
+   Our-World — Kurdish anime & manga streaming SPA — v2
    ================================================================ */
 
 /* ---------- helpers ---------- */
@@ -381,7 +379,6 @@ const $  = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => [...r.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-/* safe localStorage with memory fallback (sandbox-safe) */
 const MEM = {};
 const store = {
   get(k, f){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : (k in MEM ? MEM[k] : f); }catch(e){ return k in MEM ? MEM[k] : f; } },
@@ -396,7 +393,6 @@ function fmtViews(v){
 function hueOf(str){ let h = 0; for(const ch of String(str)) h = (h*31 + ch.codePointAt(0)) % 360; return h; }
 
 /* ---------- constants ---------- */
-const LOGO = 'https://i.postimg.cc/rwD7KZYf/IMG-20260929-231244-779.jpg';
 const TG_CHANNEL = 'https://t.me/Our_World13';
 const TG_CHAT    = 'https://t.me/Our_World_Chat13';
 
@@ -410,9 +406,10 @@ const GENRES = [
   'ئەکشن 💥','سەرکێشی 🗺️','کۆمیدی 😂','دراما 🎭','فانتازیا 🐉','ترسناک 👻',
   'ڕۆمانسی 💖','خەیاڵی زانستی 🚀','وەرزشی ⚽','مێژوویی 🏛️','نهێنی 🕵️','دڵلەرزێنەر 🔪'
 ];
-const GENRE_NAME = g => g.replace(/\s*\S+$/,'').trim(); // strip emoji
-const GENRE_EMOJI = g => (g.match(/[^\x00-\x7F]{1,3}$/) || ['⭐'])[0];
-const GENRE_LIST = GENRES.map(g => ({ name: GENRE_NAME(g), emoji: GENRE_EMOJI(g) }));
+const GENRE_LIST = GENRES.map(g => {
+  const parts = g.split(' ');
+  return { name: parts[0], emoji: parts[1] || '⭐' };
+});
 
 const THEMES = [
   { id:'orange', name:'نارنجی',   c:'#f97316' },
@@ -433,56 +430,64 @@ const TEAM = [
   { name:'گۆجۆ',         img:'https://i.postimg.cc/9Q5dNcv4/IMG-20260930-141926-195.jpg', role:'وەرگێڕەر و پۆستەر' }
 ];
 
-/* ---------- seed data ---------- */
+/* ---------- seed data — v2 with real posters ---------- */
 function seedData(){
-  const eps = (n, links = {}) => Array.from({length:n}, (_, i) => ({ n:i+1, link: links[i+1] || '' }));
+  const mk = (id, title, type, year, rating, views, translator, genres, desc, img) =>
+    ({ id, title, type, year, rating, views, translator, genres, desc, img, trailer:'', episodes:[] });
   return [
-    { id:1, title:'بەرزبوونەوەی تاکەکەسی', type:'series', year:2024, rating:8.7, views:154000, translator:'رەهێڵ',
-      genres:['ئەکشن','فانتازیا','سەرکێشی'],
-      desc:'سۆنگ جین-وو لاوێکی لاوازە لە جیهانی ڕاوچیاندا، بەڵام دوای ڕووداوێکی مردنی لە دەنگۆیەکی دووانەیدا، سیستەمێکی نهێنی هەڵدەبژێرێت کە تەنها ئەو دەیبینێت — و ئێستا بەرزبونەوەیەکی بێ وستانە دەست پێدەکات.',
-      episodes: eps(12, { 1:'https://t.me/telegram/193', 2:'https://t.me/Our_World13/201' }) },
-    { id:2, title:'شەڕی جادوگەرەکان', type:'series', year:2023, rating:8.6, views:132500, translator:'گۆجۆ',
-      genres:['ئەکشن','ترسناک','فانتازیا'],
-      desc:'یوجی ئیتادۆری خوێنکاری قوتابخانەیە کە دوای خواردنی پەنجەی سوکونا دەکەوێتە ناو جیهانی نهێنی جوجوتسو، و لەگەڵ گۆجۆ ساتۆرۆ و هاوڕێکانی شەڕ لە دژی شەڕانگێزەکان دەکات.',
-      episodes: eps(10, { 1:'https://t.me/Our_World13/214' }) },
-    { id:3, title:'هێرش بۆ سەر تیتانەکان', type:'series', year:2023, rating:9.0, views:210000, translator:'تۆیا تۆدۆڕۆکی',
-      genres:['ئەکشن','دراما','دڵلەرزێنەر'],
-      desc:'دوای سەد ساڵ لە داخستنی پەرگەکان، تیتانێکی بەرز دیوارەکە دەشکێنێت و شەڕی مرۆڤ بۆ ڕزگاربوون لە دژی تیتانەکان دەست پێدەکات — گەورەترین چیرۆکی تۆڵە لە مێژووی ئەنیمێدا.',
-      episodes: eps(12, { 1:'https://t.me/Our_World13/230' }) },
-    { id:4, title:'وان پیس', type:'manga', year:1999, rating:9.2, views:98000, translator:'رەهێڵ',
-      genres:['سەرکێشی','ئەکشن','کۆمیدی'],
-      desc:'لوفی کورێکی گومرگدارە کە دەیەوێت ببێت بە پاشای چەتەکانی دەریا؛ لەگەڵ تیمەکەی بەدوای گەنجینە ئەفسانەیی وان پیسدا دەگەڕێن لە دوورترین شوێنەکانی گراند لایندا.',
-      episodes: eps(24, { 1:'https://t.me/Our_World13/310' }) },
-    { id:5, title:'ناوی تۆ', type:'movie', year:2016, rating:8.9, views:76000, translator:'گۆجۆ',
-      genres:['ڕۆمانسی','دراما','فانتازیا'],
-      desc:'میتسوها کچێکی شارۆچکە و تاکی گەنجێکی گەورەشارن کە بەبێ هۆکار مێشکەکانیان ئاڵوگۆڕ دەبێت. کاتێک هەوڵ دەدەن یەکتر بدۆزنەوە، ڕاستییەکی دڵلەرزێنەر دەردەکەوێت.',
-      episodes: [{ n:1, link:'https://t.me/Our_World13/188' }] },
-    { id:6, title:'تاکە کەسی ئاست-ماکس', type:'manhwa', year:2023, rating:8.5, views:88000, translator:'رەهێڵ',
-      genres:['ئەکشن','خەیاڵی زانستی','فانتازیا'],
-      desc:'جین تارک یاریزانێکە کە ١٠ ساڵ بە تەنها تاوەری نهێنییەکەی تەواو کردووە؛ ئێستا کە یارییەکە بووە بە واقیع، بە زانینی خۆی هەموو نهێنییەکانی دەزانێت — بەڵام هیچ کێس باوەڕی بە گوتەکانی نییە.',
-      episodes: eps(16, { 1:'https://t.me/Our_World13/402' }) },
-    { id:7, title:'کوژەری شەیتانەکان', type:'series', year:2022, rating:8.8, views:187000, translator:'تۆیا تۆدۆڕۆکی',
-      genres:['ئەکشن','فانتازیا','مێژوویی'],
-      desc:'تانجیرۆ کامادۆ کە خێزانەکەی لەلایەن شەیتانەکانەوە کوژراون و خوشکەکەی بووە شەیتان، دەبێتە کوژەری شەیتان بۆ ئەوەی چارەیەک بۆ خوشکەکەی بدۆزێتەوە و تۆڵەی خێزانەکەی بکاتەوە.',
-      episodes: eps(8, { 1:'https://t.me/Our_World13/255' }) },
-    { id:8, title:'سوزومێ', type:'movie', year:2022, rating:8.4, views:64000, translator:'رەهێڵ',
-      genres:['سەرکێشی','فانتازیا','دراما'],
-      desc:'سوزومێ کچێکی گەورەشارە و سۆتا کوڕێکی شارۆچکەیەکە کە هەرگیز یەکتریان نەبینیوە — بەڵام کاتێک هێزێکی نهێنی جەستەکانیان ئاڵوگۆڕ دەکات، دەبێت پێکەوە مانگرتێکی گەورە ڕزگار بکەن.',
-      episodes: [{ n:1, link:'' }] }
+    mk(1,'The Apothecary Diaries','series',2023,8.8,156000,'رەهێڵ',['دراما','نهێنی','کۆمیدی'],
+      'ماوماو کچێکی زانای دەرمانەیە کە بە زۆر دەکرێتە خزمەتچی ناو کۆشکی ئیمپراتۆر؛ بە زانیاری دەرمانەکانی خۆی نهێنییە ژەهراوییەکانی ناو کۆشک ئاشکرا دەکات.',
+      'https://i.postimg.cc/cC9GFDDh/IMG-20260930-145745-485.jpg'),
+    mk(2,'The Exiled Heavy Knight Knows How to Game the System','series',2023,7.6,62000,'گۆجۆ',['ئەکشن','فانتازیا','سەرکێشی'],
+      'شەڤالێرە بەهێزەکە لە سوپا دەردەکرێت، بەڵام ئەو نهێنییەکەی دەزانێت کە سیستەمەکە دەگۆڕێت؛ ئێستا بە یاساکانی خۆی یاری دەکات و بەرەو لووتکە بەرز دەبێتەوە.',
+      'https://i.postimg.cc/D0YRrS0K/IMG-20260930-145805-397.jpg'),
+    mk(3,'Tokyo Revengers','series',2021,8.2,178000,'تۆیا تۆدۆڕۆکی',['ئەکشن','دراما','سەرکێشی'],
+      'تاکیمیچی دەزانێت هاوڕێ بەچووکەکەی کوژراوە؛ کاتێک ١٢ ساڵ دەگەڕێتەوە بەدواوە، هەوڵ دەدات داهاتوو بگۆڕێت و بچێتە ناو گانگی تۆکیۆ ڕیڤێنجەرز.',
+      'https://i.postimg.cc/3xGzGJH9/IMG-20260930-145810-593.jpg'),
+    mk(4,'Black Clover','series',2017,8.4,143000,'رەهێڵ',['ئەکشن','فانتازیا','کۆمیدی'],
+      'ئاستا کوڕێکی بێ جادووە لە جیهانێک کە جادوو هەموو شتێکە؛ لەگەڵ یارەکەی یونۆ بڕیار دەدات ببێتە پاشای جادووگەرەکان.',
+      'https://i.postimg.cc/fL8PsVxZ/IMG-20260930-145818-332.jpg'),
+    mk(5,'Blue Box','series',2024,8.3,54000,'گۆجۆ',['وەرزشی','ڕۆمانسی','دراما'],
+      'تایکی یاریزانی بادمینتۆنە و چیناتسو مەلەوانێکی گەنجە؛ کاتێک دەبنە هاوبەشی ماڵێک، لە نێوان ئامانجی وەرزشی و هەستە نوێکانیدا دەمێنن.',
+      'https://i.postimg.cc/rszPwqJH/IMG-20260930-145826-216.jpg'),
+    mk(6,'Tamako Love Story','movie',2014,8.0,41000,'رەهێڵ',['ڕۆمانسی','دراما'],
+      'تاماکۆ کچێکی خۆشەویستی دروستکردنی مۆچییە؛ لە ساڵی کۆتایی دەبەستاندا دەبێت بڕیار بدات لەسەر داهاتووی خۆی و هەستەکانی دەل میدۆری.',
+      'https://i.postimg.cc/pV1S1nW7/IMG-20260930-145835-077.jpg'),
+    mk(7,'Sk8 The Infinity','series',2021,8.0,87000,'گۆجۆ',['وەرزشی','کۆمیدی','ئەکشن'],
+      'ڕێکا قوتابییەکی ئاساییە کە دەکەوێتە ناو جیهانی نهێنی سکەیتبۆردی مەترسیدار؛ لەگەڵ لانگا ڕکابەری خێراترین سکەیتەرەکانی دەکات.',
+      'https://i.postimg.cc/59YcJmRt/IMG-20260930-145847-782.jpg'),
+    mk(8,'Shadows House','series',2021,7.8,49000,'تۆیا تۆدۆڕۆکی',['نهێنی','دراما','ترسناک'],
+      'کاتێک خانمە سێبەرەکە ئێمیڵی بە خزمەتچی هەڵدەبژێرێت، دەکەوێتە ناو کۆشکێکی پڕ لە نهێنی و تەڵەی مەترسیدار.',
+      'https://i.postimg.cc/7Z4jgrYL/IMG-20260930-145859-496.jpg'),
+    mk(9,"Shikimori's Not Just a Cutie",'series',2022,7.4,38000,'رەهێڵ',['ڕۆمانسی','کۆمیدی'],
+      'پەیوەندی نێوان یوزوکی و شیکیمۆری زۆر خۆشە؛ بەڵام کاتێک شتێک هەڵە دەبێت، کچە خۆشەویستەکە دەگۆڕێت بۆ کەسێکی سارد و بەهێز.',
+      'https://i.postimg.cc/YSnVK4NK/IMG-20260930-145911-305.jpg'),
+    mk(10,'Bocchi The Rock','series',2022,8.7,121000,'گۆجۆ',['کۆمیدی','دراما'],
+      'هیتۆری کچێکی زۆر شەرمۆچەیە کە بە نهێنی گیتار ژەنین دەکات؛ کاتێک دەچێتە ناو گروپێکی مۆسیقا، ژیانی بە تەواوی دەگۆڕێت.',
+      'https://i.postimg.cc/cCY5nXp8/IMG-20260930-145925-465.jpg'),
+    mk(11,'The Seven Deadly Sins','series',2014,8.1,167000,'تۆیا تۆدۆڕۆکی',['ئەکشن','سەرکێشی','فانتازیا'],
+      'ئەلیزابێث شازادە دەگەڕێت بۆ دوای حەوت گوناهبارەکە بۆ ڕزگارکردنی شانشینەکە؛ حەوت پاڵەوانی بەهێز کە جارێک وەک خراپەکار ناسراون.',
+      'https://i.postimg.cc/MHdfdS2d/IMG-20260930-145936-543.jpg'),
+    mk(12,'Mushoku Tensei','series',2021,8.6,139000,'رەهێڵ',['فانتازیا','سەرکێشی','دراما'],
+      'پیاوێکی ٣٤ ساڵە لە ڕووداوێکدا دەمرێت و لە جیهانێکی فانتازیادا لەشێکی نوێ وەردەگرێت؛ ئەم جارە بڕیار دەدات بەبێ پەشیمانی بژیێت.',
+      'https://i.postimg.cc/FsCJSNxz/IMG-20260930-145959-419.jpg'),
+    mk(13,'Tomb Raider King','manhwa',2021,8.0,73000,'گۆجۆ',['ئەکشن','سەرکێشی','خەیاڵی زانستی'],
+      'جیو-هێ کرێکاری شوێنەوارە کۆنەکانە؛ کاتێک دەمرێت ١٥ ساڵ دەگەڕێتەوە بەر لە دەرکەوتنی دەرگا نهێنییەکان — ئێستا بە زانینی داهاتوو هەموو گەنجینەکان بۆ خۆی دەگرێت.',
+      'https://i.postimg.cc/cLVgDh26/IMG-20260930-150009-130.jpg')
   ];
 }
 
 /* ---------- state ---------- */
-if(!store.get('ow_seeded', false)){
-  store.set('ow_db', seedData());
-  store.set('ow_seeded', true);
+if(store.get('ow_seed_v2', false) === false){
+  store.set('ow_db_v2', seedData());
+  store.set('ow_seed_v2', true);
 }
-let DB       = store.get('ow_db', seedData());
+let DB       = store.get('ow_db_v2', null) || seedData();
 let COMMENTS = store.get('ow_comments', {});
 let USER     = store.get('ow_user', null);
 let THEME    = store.get('ow_theme', 'orange');
 
-const saveDB  = () => store.set('ow_db', DB);
+const saveDB  = () => store.set('ow_db_v2', DB);
 const saveCMT = () => store.set('ow_comments', COMMENTS);
 
 /* ---------- theme ---------- */
@@ -495,161 +500,190 @@ function applyTheme(id){
 }
 applyTheme(THEME);
 
-/* ---------- toasts ---------- */
-function toast(msg, type = 'ok'){
+/* ---------- toast ---------- */
+function toast(msg, type){
   const el = document.createElement('div');
   el.className = 'toast' + (type === 'err' ? ' err' : '');
   el.textContent = msg;
   $('#toast-root').appendChild(el);
-  setTimeout(() => { el.style.opacity = '0'; el.style.transition = '.35s'; }, 2600);
+  setTimeout(() => { el.style.transition = '.35s'; el.style.opacity = '0'; }, 2600);
   setTimeout(() => el.remove(), 3050);
 }
 
 /* ---------- modal ---------- */
 function openModal(html){
   $('#modal-root').innerHTML =
-    `<div class="modal-scrim" id="m-scrim"></div>
-     <div class="modal" id="m-box">
-       <button class="x" id="m-x">✕</button>
-       <div style="margin-top:4px">${html}</div>
-     </div>`;
-  requestAnimationFrame(() => { $('#m-scrim')?.classList.add('on'); $('#m-box')?.classList.add('on'); });
+    '<div class="modal-scrim" id="m-scrim"></div>' +
+    '<div class="modal" id="m-box"><button class="x" id="m-x">✕</button><div style="margin-top:4px">' + html + '</div></div>';
+  requestAnimationFrame(() => {
+    const s = $('#m-scrim'), b = $('#m-box');
+    if(s) s.classList.add('on');
+    if(b) b.classList.add('on');
+  });
   $('#m-scrim').onclick = closeModal;
   $('#m-x').onclick = closeModal;
 }
 function closeModal(){
   const s = $('#m-scrim'), b = $('#m-box');
   if(!s) return;
-  s.classList.remove('on'); b.classList.remove('on');
+  s.classList.remove('on');
+  b.classList.remove('on');
   setTimeout(() => { $('#modal-root').innerHTML = ''; }, 300);
 }
 
 /* ---------- drawer ---------- */
-const drawer = $('#drawer'), scrim = $('#drawer-scrim');
 function toggleDrawer(open){
-  drawer.classList.toggle('on', open);
-  scrim.classList.toggle('on', open);
+  $('#drawer').classList.toggle('on', open);
+  $('#drawer-scrim').classList.toggle('on', open);
 }
- $('#btn-drawer').onclick = () => toggleDrawer(true);
-scrim.onclick = () => toggleDrawer(false);
+
+/* ---------- link / embed helpers ---------- */
+function normLink(l){
+  l = (l || '').trim();
+  if(!l) return '';
+  if(!/^https?:\/\//i.test(l)) l = 'https://' + l;
+  return l;
+}
+function embedURL(link){
+  const l = normLink(link);
+  const m = l.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
+  if(m) return 'https://www.youtube.com/embed/' + m[1];
+  if(/t\.me\//i.test(l)) return l + (l.includes('?') ? '&embed=1' : '?embed=1');
+  return l;
+}
 
 /* ---------- shared components ---------- */
 function itemEmoji(t){
-  const g = t.genres.find(g => GENRE_LIST.some(x => x.name === g));
-  return g ? GENRE_EMOJI(g) : TYPES[t.type].emoji;
+  for(const g of t.genres){
+    const f = GENRE_LIST.find(x => x.name === g);
+    if(f) return f.emoji;
+  }
+  return TYPES[t.type].emoji;
 }
 function posterBg(t){
   const h = hueOf(t.title);
-  return `background:linear-gradient(155deg,hsl(${h} 62% 36%),hsl(${(h+48)%360} 68% 15%))`;
+  return 'background:linear-gradient(155deg,hsl(' + h + ' 62% 36%),hsl(' + ((h+48)%360) + ' 68% 15%))';
 }
 function heroBg(t){
   const h = hueOf(t.title);
-  return `background:linear-gradient(150deg,hsl(${h} 58% 24%),hsl(${(h+45)%360} 62% 11%) 72%,#0c0c14)`;
+  return 'background:linear-gradient(150deg,hsl(' + h + ' 58% 24%),hsl(' + ((h+45)%360) + ' 62% 11%) 72%,#0c0c14)';
 }
 function countLabel(t){
   if(t.type === 'movie') return 'فیلم';
-  return `${t.episodes.length} ${TYPES[t.type].unit}`;
+  return t.episodes.length + ' ' + TYPES[t.type].unit;
 }
 function cardHTML(t){
-  return `<a class="card" href="#/detail/${t.id}">
-    <div class="poster" style="${posterBg(t)}">
-      <span class="p-emoji">${itemEmoji(t)}</span>
-      <span class="badge b-rate">⭐ ${t.rating}</span>
-      <span class="badge b-type">${TYPES[t.type].short}</span>
-      <div class="p-grad"></div>
-      <span class="p-title">${esc(t.title)}</span>
-    </div>
-    <div class="meta"><span>👁 ${fmtViews(t.views)}</span><span>${t.year}</span><span>${countLabel(t)}</span></div>
-  </a>`;
+  const visual = t.img
+    ? '<img class="p-img" src="' + esc(t.img) + '" alt="' + esc(t.title) + '" loading="lazy" onerror="this.remove()">'
+    : '<span class="p-emoji">' + itemEmoji(t) + '</span>';
+  return '<a class="card" href="#/detail/' + t.id + '">' +
+    '<div class="poster" style="' + posterBg(t) + '">' + visual +
+    '<span class="badge b-rate">⭐ ' + t.rating + '</span>' +
+    '<span class="badge b-type">' + TYPES[t.type].short + '</span>' +
+    '<div class="p-grad"></div><span class="p-title">' + esc(t.title) + '</span></div>' +
+    '<div class="meta"><span>👁 ' + fmtViews(t.views) + '</span><span>' + t.year + '</span><span>' + countLabel(t) + '</span></div>' +
+    '</a>';
 }
 function gridHTML(list){
-  if(!list.length) return `<div class="empty"><i>🫥</i><b>هیچ بابەتێک نەدۆزرایەوە</b><span>لەم کاتەدا شتێک لێرە نییە — دواتر سەردان بکەرەوە</span></div>`;
-  return `<div class="grid-cards">${list.map(cardHTML).join('')}</div>`;
+  if(!list.length) return emptyBox('🫥','هیچ بابەتێک نەدۆزرایەوە','لەم کاتەدا شتێک لێرە نییە — دواتر سەردان بکەرەوە');
+  return '<div class="grid-cards">' + list.map(cardHTML).join('') + '</div>';
 }
 function emptyBox(icon, title, sub){
-  return `<div class="empty"><i>${icon}</i><b>${title}</b><span>${sub}</span></div>`;
+  return '<div class="empty"><i>' + icon + '</i><b>' + title + '</b><span>' + sub + '</span></div>';
 }
 
-/* ---------- home ---------- */
-let heroTimer = null, heroIdx = 0, heroItems = [];
+/* ================================================================
+   HOME — بۆکسی تایبەت + هەفتانە + ترایلەر + تێلگرام
+   ================================================================ */
 function renderHome(){
-  const newest = DB.filter(t => t.type === 'series').sort((a,b) => b.year - a.year || b.id - a.id).slice(0,10);
-  const viewed = [...DB].sort((a,b) => b.views - a.views).slice(0,10);
-  const manga  = DB.filter(t => t.type === 'manga' || t.type === 'manhwa').slice(0,10);
-  const movies = DB.filter(t => t.type === 'movie').slice(0,10);
-  heroItems = [...DB].sort((a,b) => b.rating - a.rating).slice(0,4);
-  heroIdx = 0;
+  const seriesImg = DB.filter(t => t.type === 'series' && t.img);
+  const featured  = seriesImg.slice(0, 5);
+  const weekly    = seriesImg.slice(5, 9);
+  const trailers  = DB.filter(t => t.trailer);
+  const big   = featured[0];
+  const minis = featured.slice(1, 5);
 
-  const sec = (title, list, link) => `
-    <section>
-      <div class="sec-head"><h3>${title}</h3><a href="${link}">هەمووی ←</a></div>
-      ${gridHTML(list)}
-    </section>`;
-
-  $('#view').innerHTML = `
-    <div class="hero" id="hero">
-      ${heroItems.map((t,i) => `
-        <div class="hero-slide ${i===0?'on':''}" data-i="${i}">
-          <div class="hero-bg" style="${heroBg(t)}"><span class="hero-mark">${itemEmoji(t)}</span></div>
-          <div class="hero-info">
-            <div class="hero-chips">
-              <span class="badge b-rate" style="position:static">⭐ ${t.rating}</span>
-              <span class="badge b-type" style="position:static">${TYPES[t.type].short}</span>
-              <span class="badge" style="position:static;background:rgba(255,255,255,.1);color:#ddd">${t.year}</span>
-            </div>
-            <h2>${esc(t.title)}</h2>
-            <p class="hero-p">${esc(t.desc)}</p>
-            <a class="btn" href="#/detail/${t.id}" style="align-self:flex-start">تەماشا بکە ▶</a>
-          </div>
-          <a class="hero-poster" href="#/detail/${t.id}" style="${posterBg(t)}">
-            <span class="p-emoji">${itemEmoji(t)}</span><div class="p-grad"></div>
-          </a>
-        </div>`).join('')}
-      <div class="hero-dots" id="hero-dots">
-        ${heroItems.map((_,i) => `<button class="${i===0?'on':''}" data-i="${i}" aria-label="سلایدی ${i+1}"></button>`).join('')}
-      </div>
-    </div>
-    ${sec('نوێترین ئەلقە ژێرنووسکراوەکان', newest, '#/browse/type/series')}
-    ${sec('زۆرترین بینین', viewed, '#/browse/type/all')}
-    ${sec('مانگا و مانهوا', manga, '#/browse/type/manga')}
-    ${sec('ئەنیمێ فیلم', movies, '#/browse/type/movie')}
-    <div class="join">
-      <h3>بەشداری کەناڵ و گروپەکەمان بکە 📡</h3>
-      <p>هەموو ئەلقە و چاپتەرە نوێکان یەکەم جار لە تێلگرام بڵاو دەکرێنەوە — بۆ ئاگاداربوون لە نوێکان بەشداری بکە.</p>
-      <div class="join-btns">
-        <a class="btn" href="${TG_CHANNEL}" target="_blank" rel="noopener">📡 کەناڵی تێلگرام</a>
-        <a class="btn ghost" href="${TG_CHAT}" target="_blank" rel="noopener">گروپی چات 💬</a>
-      </div>
-    </div>`;
-
-  /* slider logic */
-  const slides = $$('#hero .hero-slide'), dots = $$('#hero-dots button');
-  function heroGo(i){
-    heroIdx = (i + heroItems.length) % heroItems.length;
-    slides.forEach((s,j) => s.classList.toggle('on', j === heroIdx));
-    dots.forEach((d,j) => d.classList.toggle('on', j === heroIdx));
+  let featHTML;
+  if(big){
+    const bigHTML =
+      '<a class="feat-big" href="#/detail/' + big.id + '" style="' + heroBg(big) + '">' +
+      '<img class="p-img" src="' + esc(big.img) + '" alt="' + esc(big.title) + '" onerror="this.remove()">' +
+      '<div class="shade"></div>' +
+      '<div class="feat-info">' +
+      '<div class="hero-chips">' +
+      '<span class="badge b-rate" style="position:static">⭐ ' + big.rating + '</span>' +
+      '<span class="badge b-type" style="position:static">' + TYPES[big.type].short + '</span>' +
+      '<span class="badge" style="position:static;background:rgba(255,255,255,.12);color:#ddd">' + big.year + '</span>' +
+      '</div>' +
+      '<h2>' + esc(big.title) + '</h2>' +
+      '<p class="hero-p">' + esc(big.desc) + '</p>' +
+      '<span class="btn sm" style="align-self:flex-start;margin-top:2px">تەماشا بکە ▶</span>' +
+      '</div></a>';
+    featHTML = '<div class="feat-wrap">' + bigHTML + '<div class="feat-mini-grid">' + minis.map(cardHTML).join('') + '</div></div>';
+  } else {
+    featHTML = gridHTML(featured);
   }
-  function restart(){ clearInterval(heroTimer); heroTimer = setInterval(() => heroGo(heroIdx + 1), 5000); }
-  dots.forEach(d => d.onclick = () => { heroGo(+d.dataset.i); restart(); });
-  restart();
+
+  const trailerHTML = trailers.length
+    ? '<div class="trailer-row">' + trailers.map(t =>
+        '<div class="trailer-card" data-tr="' + t.id + '">' +
+        '<div class="t-thumb" style="' + posterBg(t) + '">' +
+        (t.img
+          ? '<img class="p-img" src="' + esc(t.img) + '" alt="" loading="lazy" onerror="this.remove()">'
+          : '<span class="p-emoji" style="font-size:34px">' + itemEmoji(t) + '</span>') +
+        '<div class="t-play"><span>▶</span></div></div>' +
+        '<div class="t-title">' + esc(t.title) + '</div></div>').join('') + '</div>'
+    : emptyBox('🎬','هێشتا ترایلەر زیاد نەکراوە','لە پانێلی بەڕێوەبردن دوگمەی 🎬 بۆ زیادکردنی لینکی ترایلەر');
+
+  $('#view').innerHTML =
+    '<div class="feat-box">' +
+    '<div class="feat-head"><h3>بینینی ئەنیمێی ژێرنووسکراوەکان 📺</h3><a href="#/browse/type/series">هەمووی ←</a></div>' +
+    featHTML + '</div>' +
+
+    '<section>' +
+    '<div class="sec-head"><h3>ئەنیمێی هەفتانە 📅</h3><a href="#/browse/type/series">هەمووی ←</a></div>' +
+    (weekly.length ? '<div class="week-grid">' + weekly.map(cardHTML).join('') + '</div>'
+                   : emptyBox('📅','هێشتا بابەتێک نییە','بەم زووانە زیاد دەکرێت')) +
+    '</section>' +
+
+    '<section>' +
+    '<div class="sec-head"><h3>ترایلەرەکان 🎬</h3></div>' +
+    trailerHTML +
+    '</section>' +
+
+    '<div class="join">' +
+    '<h3>بەشداری کەناڵ و گروپەکەمان بکە 📡</h3>' +
+    '<p>هەموو ئەلقە و چاپتەرە نوێکان یەکەم جار لە تێلگرام بڵاو دەکرێنەوە — بۆ ئاگاداربوون لە نوێکان بەشداری بکە.</p>' +
+    '<div class="join-btns">' +
+    '<a class="btn" href="' + TG_CHANNEL + '" target="_blank" rel="noopener">📡 کەناڵی تێلگرام</a>' +
+    '<a class="btn ghost" href="' + TG_CHAT + '" target="_blank" rel="noopener">گروپی چات 💬</a>' +
+    '</div></div>';
+
+  $$('#view .trailer-card').forEach(c => c.onclick = () => openTrailer(+c.dataset.tr));
+}
+
+/* ---------- trailer player modal ---------- */
+function openTrailer(id){
+  const t = DB.find(x => x.id === id);
+  if(!t || !t.trailer){ toast('ترایلەری ئەم بابەتە هێشتا زیاد نەکراوە', 'err'); return; }
+  openModal(
+    '<h3>🎬 ترایلەر — ' + esc(t.title) + '</h3>' +
+    '<div class="t-frame"><iframe src="' + esc(embedURL(t.trailer)) + '" allowfullscreen allow="autoplay; encrypted-media; fullscreen"></iframe></div>'
+  );
 }
 
 /* ---------- categories ---------- */
 function renderCategories(){
-  $('#view').innerHTML = `
-    <div class="page-head"><h2>بەشەکان ▦</h2><p>جۆرەکەت هەڵبژێرە یان بە ژانر بگەڕێ</p></div>
-    <div class="type-grid">
-      ${Object.entries(TYPES).map(([k,v]) => `
-        <a class="type-card" href="#/browse/type/${k}">
-          <i>${v.emoji}</i><b>${v.name}</b><span>${DB.filter(t => t.type === k).length} بابەت</span>
-        </a>`).join('')}
-    </div>
-    <section>
-      <div class="sec-head"><h3>ژانرەکان</h3></div>
-      <div class="gen-grid">
-        ${GENRE_LIST.map(g => `<a class="d-tile" href="#/browse/genre/${encodeURIComponent(g.name)}"><i>${g.emoji}</i>${esc(g.name)}</a>`).join('')}
-      </div>
-    </section>`;
+  $('#view').innerHTML =
+    '<div class="page-head"><h2>بەشەکان ▦</h2><p>جۆرەکەت هەڵبژێرە یان بە ژانر بگەڕێ</p></div>' +
+    '<div class="type-grid">' +
+    Object.entries(TYPES).map(([k, v]) =>
+      '<a class="type-card" href="#/browse/type/' + k + '"><i>' + v.emoji + '</i><b>' + v.name + '</b>' +
+      '<span>' + DB.filter(t => t.type === k).length + ' بابەت</span></a>').join('') +
+    '</div>' +
+    '<section><div class="sec-head"><h3>ژانرەکان</h3></div><div class="gen-grid">' +
+    GENRE_LIST.map(g => '<a class="d-tile" href="#/browse/genre/' + encodeURIComponent(g.name) + '"><i>' + g.emoji + '</i>' + esc(g.name) + '</a>').join('') +
+    '</div></section>';
 }
 
 /* ---------- browse ---------- */
@@ -659,34 +693,34 @@ function renderBrowse(kind, val){
     list = DB.filter(t => t.genres.includes(val));
     heading = 'ژانر: ' + val;
   } else if(val === 'all'){
-    list = DB; heading = 'زۆرترین بینین';
+    list = DB; heading = 'هەموو بابەتەکان';
   } else {
     list = DB.filter(t => t.type === val);
     heading = TYPES[val] ? TYPES[val].name : 'هەموو بابەتەکان';
   }
-  $('#view').innerHTML = `
-    <div class="page-head"><h2>${esc(heading)}</h2><p>${list.length} بابەت</p></div>
-    <div style="margin-top:16px">${gridHTML(list)}</div>`;
+  $('#view').innerHTML =
+    '<div class="page-head"><h2>' + esc(heading) + '</h2><p>' + list.length + ' بابەت</p></div>' +
+    '<div style="margin-top:16px">' + gridHTML(list) + '</div>';
 }
 
 /* ---------- search ---------- */
 let searchQ = '', searchType = 'all';
 function renderSearch(){
   const chips = [['all','هەموو'],['series','زنجیرە ئەنیمێ'],['movie','ئەنیمێ فیلم'],['manga','مانگا'],['manhwa','مانهوا']];
-  $('#view').innerHTML = `
-    <div class="search-big"><input id="s-input" placeholder="🔍 گەڕان بۆ ئەنیمێ، مانگا..." value="${esc(searchQ)}"></div>
-    <div class="chip-row" id="s-chips">
-      ${chips.map(([k,l]) => `<button class="chip ${k===searchType?'on':''}" data-t="${k}">${l}</button>`).join('')}
-    </div>
-    <div id="s-results" style="margin-top:8px"></div>`;
+  $('#view').innerHTML =
+    '<div class="search-big"><input id="s-input" placeholder="🔍 گەڕان بۆ ئەنیمێ، مانگا..." value="' + esc(searchQ) + '"></div>' +
+    '<div class="chip-row" id="s-chips">' +
+    chips.map(([k, l]) => '<button class="chip ' + (k === searchType ? 'on' : '') + '" data-t="' + k + '">' + l + '</button>').join('') +
+    '</div><div id="s-results" style="margin-top:8px"></div>';
+
   const run = () => {
     const q = searchQ.trim().toLowerCase();
-    let list = DB.filter(t =>
+    const list = DB.filter(t =>
       (searchType === 'all' || t.type === searchType) &&
       (!q || t.title.toLowerCase().includes(q) || t.genres.some(g => g.toLowerCase().includes(q)) || String(t.year).includes(q))
     );
     $('#s-results').innerHTML = list.length
-      ? `<div class="grid-cards">${list.map(cardHTML).join('')}</div>`
+      ? '<div class="grid-cards">' + list.map(cardHTML).join('') + '</div>'
       : emptyBox('🔍','هیچ ئەنجامێک نەدۆزرایەوە','وشەیەکی تر تاقی بکەرەوە یان فلتەر بگۆڕە');
   };
   $('#s-input').oninput = e => { searchQ = e.target.value; run(); };
@@ -703,174 +737,173 @@ function renderDetail(id){
   const t = DB.find(x => x.id === id);
   if(!t){ renderHome(); return; }
   const isChap = t.type === 'manga' || t.type === 'manhwa';
-  const unitLabel = isChap ? 'چاپتەر' : 'ئەلقە';
+  const unit = isChap ? 'چاپتەر' : 'ئەلقە';
   const cmts = COMMENTS[t.id] || [];
-  const cta = t.type === 'series' ? 'بینینی ئەلقەکان ▶' : t.type === 'movie' ? 'بینینی فیلم ▶' : 'خوێندنی چاپتەرەکان ▶';
+  let cta = 'بینینی ئەلقەکان ▶';
+  if(t.type === 'movie') cta = 'بینینی فیلم ▶';
+  if(isChap) cta = 'خوێندنی چاپتەرەکان ▶';
 
-  $('#view').innerHTML = `
-    <div class="back-row"><button id="back-btn">→ گەڕانەوە</button></div>
-    <div class="d-hero">
-      <div class="d-poster" style="${posterBg(t)}">
-        <span class="p-emoji">${itemEmoji(t)}</span>
-        <span class="badge b-rate">⭐ ${t.rating}</span>
-        <div class="p-grad"></div>
-      </div>
-      <div class="d-info">
-        <h2>${esc(t.title)}</h2>
-        <div class="hero-chips">
-          <span class="badge b-rate" style="position:static">⭐ ${t.rating}</span>
-          <span class="badge" style="position:static;background:rgba(255,255,255,.1);color:#ddd">👁 ${fmtViews(t.views)}</span>
-          <span class="badge b-type" style="position:static">${TYPES[t.type].name}</span>
-          <span class="badge" style="position:static;background:rgba(255,255,255,.1);color:#ddd">${t.year}</span>
-        </div>
-        <div class="g-chips">${t.genres.map(g => `<a class="g-chip" href="#/browse/genre/${encodeURIComponent(g)}">${esc(g)}</a>`).join('')}</div>
-        <a class="btn" href="#/watch/${t.id}/1">${cta}</a>
-      </div>
-    </div>
-    <div class="panel"><h4>چیرۆک</h4><p style="font-size:13.5px;color:#c9c9d6">${esc(t.desc)}</p></div>
-    <div class="panel"><h4>وەرگێڕان</h4>
-      <div class="trow"><span class="mut">وەرگێڕەر</span><b>${esc(t.translator || 'نەزانراو')}</b></div>
-      <div class="trow"><span class="mut">کەناڵی بڵاوکردنەوە</span><a href="${TG_CHANNEL}" target="_blank" rel="noopener" style="color:var(--accent)">Our-World 📡</a></div>
-    </div>
-    <div class="panel"><h4>${isChap ? 'چاپتەرەکان' : 'ئەلقەکان'}</h4>
-      ${t.episodes.length ? `<div class="ep-grid">${t.episodes.map(e => `
-        <a class="ep ${e.link ? '' : 'soon'}" href="#/watch/${t.id}/${e.n}">${unitLabel} ${e.n}${e.link ? '' : '<small>بەم زووانە</small>'}</a>`).join('')}</div>`
-      : `<p class="mut" style="font-size:13px">هێشتا هیچ زیاد نەکراوە — بەم زووانە 🕐</p>`}
-    </div>
-    <div class="panel"><h4>هەڵسەنگاندنەکان</h4>
-      <div id="cmt-list">
-        ${cmts.length ? cmts.map(c => `
-          <div class="cmt">
-            <div class="cmt-av">${esc(c.name.charAt(0))}</div>
-            <div><b>${esc(c.name)}</b><p>${esc(c.text)}</p></div>
-          </div>`).join('')
-        : `<p class="mut" style="font-size:13px;padding:6px 0">هێشتا کۆمێنتێک نییە 💬 — یەکەم کەس بە!</p>`}
-      </div>
-      <form id="cmt-form" style="margin-top:12px">
-        <input id="cmt-name" placeholder="ناوی تۆ" value="${USER ? esc(USER.name) : ''}">
-        <textarea id="cmt-text" rows="3" style="margin-top:9px" placeholder="بیرڕای تۆ بنووسە..."></textarea>
-        <button class="btn sm" style="margin-top:9px">ناردن ➤</button>
-      </form>
-    </div>`;
+  const visual = t.img
+    ? '<img class="p-img" src="' + esc(t.img) + '" alt="' + esc(t.title) + '" onerror="this.remove()">'
+    : '<span class="p-emoji" style="font-size:56px">' + itemEmoji(t) + '</span>';
+
+  $('#view').innerHTML =
+    '<div class="back-row"><button id="back-btn">→ گەڕانەوە</button></div>' +
+    '<div class="d-hero">' +
+    '<div class="d-poster" style="' + posterBg(t) + '">' + visual +
+    '<span class="badge b-rate">⭐ ' + t.rating + '</span><div class="p-grad"></div></div>' +
+    '<div class="d-info">' +
+    '<h2>' + esc(t.title) + '</h2>' +
+    '<div class="hero-chips">' +
+    '<span class="badge b-rate" style="position:static">⭐ ' + t.rating + '</span>' +
+    '<span class="badge" style="position:static;background:rgba(255,255,255,.1);color:#ddd">👁 ' + fmtViews(t.views) + '</span>' +
+    '<span class="badge b-type" style="position:static">' + TYPES[t.type].name + '</span>' +
+    '<span class="badge" style="position:static;background:rgba(255,255,255,.1);color:#ddd">' + t.year + '</span>' +
+    '</div>' +
+    '<div class="g-chips">' + t.genres.map(g => '<a class="g-chip" href="#/browse/genre/' + encodeURIComponent(g) + '">' + esc(g) + '</a>').join('') + '</div>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+    '<a class="btn" href="#/watch/' + t.id + '/1">' + cta + '</a>' +
+    (t.trailer ? '<button class="btn ghost" id="d-trailer">ترایلەر 🎬</button>' : '') +
+    '</div></div></div>' +
+
+    '<div class="panel"><h4>چیرۆک</h4><p style="font-size:13.5px;color:#c9c9d6">' + esc(t.desc) + '</p></div>' +
+
+    '<div class="panel"><h4>وەرگێڕان</h4>' +
+    '<div class="trow"><span class="mut">وەرگێڕەر</span><b>' + esc(t.translator || 'نەزانراو') + '</b></div>' +
+    '<div class="trow"><span class="mut">کەناڵی بڵاوکردنەوە</span><a href="' + TG_CHANNEL + '" target="_blank" rel="noopener" style="color:var(--accent)">Our-World 📡</a></div>' +
+    '</div>' +
+
+    '<div class="panel"><h4>' + (isChap ? 'چاپتەرەکان' : 'ئەلقەکان') + '</h4>' +
+    (t.episodes.length
+      ? '<div class="ep-grid">' + t.episodes.map(e =>
+          '<a class="ep ' + (e.link ? '' : 'soon') + '" href="#/watch/' + t.id + '/' + e.n + '">' + unit + ' ' + e.n +
+          (e.link ? '' : '<small>بەم زووانە</small>') + '</a>').join('') + '</div>'
+      : '<p class="mut" style="font-size:13px">هێشتا هیچ زیاد نەکراوە — بەم زووانە 🕐</p>') +
+    '</div>' +
+
+    '<div class="panel"><h4>هەڵسەنگاندنەکان</h4>' +
+    (cmts.length
+      ? cmts.map(c =>
+          '<div class="cmt"><div class="cmt-av">' + esc(c.name.charAt(0)) + '</div>' +
+          '<div><b>' + esc(c.name) + '</b><p>' + esc(c.text) + '</p></div></div>').join('')
+      : '<p class="mut" style="font-size:13px;padding:6px 0">هێشتا کۆمێنتێک نییە 💬 — یەکەم کەس بە!</p>') +
+    '<form id="cmt-form" style="margin-top:12px">' +
+    '<input id="cmt-name" placeholder="ناوی تۆ" value="' + (USER ? esc(USER.name) : '') + '">' +
+    '<textarea id="cmt-text" rows="3" style="margin-top:9px" placeholder="بیرڕای تۆ بنووسە..."></textarea>' +
+    '<button class="btn sm" style="margin-top:9px">ناردن ➤</button></form></div>';
 
   $('#back-btn').onclick = () => { if(history.length > 1) history.back(); else location.hash = '#/home'; };
+  const trBtn = $('#d-trailer');
+  if(trBtn) trBtn.onclick = () => openTrailer(t.id);
   $('#cmt-form').onsubmit = e => {
     e.preventDefault();
-    const name = $('#cmt-name').value.trim(), text = $('#cmt-text').value.trim();
+    const name = $('#cmt-name').value.trim();
+    const text = $('#cmt-text').value.trim();
     if(!name){ toast('تکایە ناوی خۆت بنووسە', 'err'); return; }
     if(!text){ toast('تکایە کۆمێنتەکەت بنووسە', 'err'); return; }
-    (COMMENTS[t.id] = COMMENTS[t.id] || []).unshift({ name, text });
+    if(!COMMENTS[t.id]) COMMENTS[t.id] = [];
+    COMMENTS[t.id].unshift({ name, text });
     saveCMT();
     toast('کۆمێنتەکەت زیادکرا ✓');
     renderDetail(id);
   };
 }
 
-/* ---------- watch / reader (telegram embed) ---------- */
-function normLink(l){
-  l = (l || '').trim();
-  if(!l) return '';
-  if(!/^https?:\/\//i.test(l)) l = 'https://' + l;
-  return l;
-}
+/* ---------- watch / reader — telegram embed ---------- */
 function renderWatch(id, n){
   const t = DB.find(x => x.id === id);
   if(!t){ renderHome(); return; }
-  const isMovie = t.type === 'movie';
   const isChap = t.type === 'manga' || t.type === 'manhwa';
-  const unitLabel = isChap ? 'چاپتەر' : 'ئەلقە';
-  const eps = [...t.episodes].sort((a,b) => a.n - b.n);
-  let cur = eps.find(e => e.n === n) || eps[0] || null;
-  const idx = cur ? eps.indexOf(cur) : -1;
-  const prev = idx > 0 ? eps[idx-1] : null;
-  const next = idx >= 0 && idx < eps.length-1 ? eps[idx+1] : null;
+  const isMovie = t.type === 'movie';
+  const unit = isChap ? 'چاپتەر' : 'ئەلقە';
+  const eps = [...t.episodes].sort((a, b) => a.n - b.n);
+  const cur = eps.find(e => e.n === n) || null;
+  const idx = eps.indexOf(cur);
+  const prev = idx > 0 ? eps[idx - 1] : null;
+  const next = (idx >= 0 && idx < eps.length - 1) ? eps[idx + 1] : null;
   const link = cur ? normLink(cur.link) : '';
-  const embed = link ? (link.includes('?') ? link + '&embed=1' : link + '?embed=1') : '';
 
-  $('#view').innerHTML = `
-    <div class="back-row"><button id="back-btn">→ گەڕانەوە</button></div>
-    <div class="page-head" style="margin-top:12px">
-      <h2>${esc(t.title)}</h2>
-      <p>${isMovie ? 'ئەنیمێ فیلم' : `${unitLabel} ${cur ? cur.n : n}`} — لە کەناڵی Our-World</p>
-    </div>
-    <div class="player">
-      ${link
-        ? `<iframe src="${esc(embed)}" allowfullscreen scrolling="no" allow="autoplay; encrypted-media"></iframe>`
-        : `<div class="fallback"><i>📺</i><span>لینکی تێلگرام بۆ ئەم ${isMovie ? 'فیلمە' : (isChap ? 'چاپتەرە' : 'ئەلقەیە')} هێشتا دانەنراوە</span></div>`}
-    </div>
-    <div class="watch-ctrl">
-      ${isMovie ? '' : `
-        <button class="btn ghost sm" id="w-prev" ${prev ? '' : 'disabled style="opacity:.4;pointer-events:none"'}>→ ${unitLabel}ی پێشوو</button>
-        <button class="btn ghost sm" id="w-next" ${next ? '' : 'disabled style="opacity:.4;pointer-events:none"'}>${unitLabel}ی دواتر ←</button>`}
-      ${link ? `<a class="btn sm" href="${esc(link)}" target="_blank" rel="noopener">کردنەوە لە تێلگرام ↗</a>` : ''}
-    </div>
-    <div class="note">⚠️ <span>تێبینی: لە هەندێک مۆدی پیشاندانی سنووردار (وەک sandbox) نەخشەکردنی تێلگرام ڕەنگە بار نەبێت، بەڵام کاتێک ماڵپەرەکە لە هۆستێکی ڕاستەقینەوە کاردەکات، بێ کێشە کار دەکات.</span></div>
-    <div class="panel"><h4>${isChap ? 'هەموو چاپتەرەکان' : 'هەموو ئەلقەکان'}</h4>
-      ${eps.length ? `<div class="ep-grid">${eps.map(e => `
-        <a class="ep ${cur && e.n === cur.n ? 'cur' : (e.link ? '' : 'soon')}" href="#/watch/${t.id}/${e.n}">${unitLabel} ${e.n}${e.link ? '' : '<small>بەم زووانە</small>'}</a>`).join('')}</div>`
-      : `<p class="mut" style="font-size:13px">هێشتا هیچ زیاد نەکراوە 🕐</p>`}
-    </div>`;
+  let sub = 'لە کەناڵی Our-World';
+  if(cur) sub = unit + ' ' + cur.n + ' — لە کەناڵی Our-World';
+  else if(isMovie) sub = 'ئەنیمێ فیلم — لە کەناڵی Our-World';
+
+  const kindWord = isMovie ? 'فیلمە' : (isChap ? 'چاپتەرە' : 'ئەلقەیە');
+
+  $('#view').innerHTML =
+    '<div class="back-row"><button id="back-btn">→ گەڕانەوە</button></div>' +
+    '<div class="page-head" style="margin-top:12px"><h2>' + esc(t.title) + '</h2><p>' + sub + '</p></div>' +
+    '<div class="player">' +
+    (link
+      ? '<iframe src="' + esc(embedURL(link)) + '" allowfullscreen scrolling="no" allow="autoplay; encrypted-media; fullscreen"></iframe>'
+      : '<div class="fallback"><i>📺</i><span>لینکی تێلگرام بۆ ئەم ' + kindWord + ' هێشتا دانەنراوە</span></div>') +
+    '</div>' +
+    '<div class="watch-ctrl">' +
+    (prev ? '<button class="btn ghost sm" id="w-prev">→ ' + unit + 'ی پێشوو</button>' : '') +
+    (next ? '<button class="btn ghost sm" id="w-next">' + unit + 'ی دواتر ←</button>' : '') +
+    (link ? '<a class="btn sm" href="' + esc(link) + '" target="_blank" rel="noopener">کردنەوە لە تێلگرام ↗</a>' : '') +
+    '</div>' +
+    '<div class="note">⚠️ <span>تێبینی: لە هەندێک پیشاندانی سنووردار وەک sandbox نەخشەی تێلگرام بار نابێت، بەڵام لەگەڵ هۆستی ڕاستەقینە بێ کێشە کار دەکات.</span></div>' +
+    '<div class="panel"><h4>' + (isChap ? 'هەموو چاپتەرەکان' : 'هەموو ئەلقەکان') + '</h4>' +
+    (eps.length
+      ? '<div class="ep-grid">' + eps.map(e =>
+          '<a class="ep ' + ((cur && e.n === cur.n) ? 'cur' : (e.link ? '' : 'soon')) + '" href="#/watch/' + t.id + '/' + e.n + '">' +
+          unit + ' ' + e.n + (e.link ? '' : '<small>بەم زووانە</small>') + '</a>').join('') + '</div>'
+      : '<p class="mut" style="font-size:13px">هێشتا هیچ زیاد نەکراوە — بەم زووانە 🕐</p>') +
+    '</div>';
 
   $('#back-btn').onclick = () => { if(history.length > 1) history.back(); else location.hash = '#/detail/' + t.id; };
-  if($('#w-prev') && prev) $('#w-prev').onclick = () => location.hash = `#/watch/${t.id}/${prev.n}`;
-  if($('#w-next') && next) $('#w-next').onclick = () => location.hash = `#/watch/${t.id}/${next.n}`;
+  const pBtn = $('#w-prev'), nBtn = $('#w-next');
+  if(pBtn) pBtn.onclick = () => { location.hash = '#/watch/' + t.id + '/' + prev.n; };
+  if(nBtn) nBtn.onclick = () => { location.hash = '#/watch/' + t.id + '/' + next.n; };
 }
 
 /* ---------- team ---------- */
 function renderTeam(){
-  $('#view').innerHTML = `
-    <div class="page-head" style="text-align:center;margin-top:28px">
-      <h2>بەڕێوەبەرانی Our-World 👑</h2>
-      <p>ئەندامانی تیمی Our-World کە بە دڵسۆزییەوە ئەم شوێنە بەڕێوە دەبەن</p>
-    </div>
-    <div class="team-grid">
-      ${TEAM.map(m => `
-        <div class="team-card">
-          <img src="${m.img}" alt="${esc(m.name)}">
-          <b>${esc(m.name)}</b>
-          <span class="role">${esc(m.role)}</span>
-        </div>`).join('')}
-    </div>
-    <div class="join" style="margin-top:26px">
-      <h3>پەیوەندیمان پێوە بکە 📡</h3>
-      <p>بۆ پێشنیار، سکاڵا یان هاوکاری — لە ڕێگەی تێلگرامەوە پەیوەندیمان پێوە بکە.</p>
-      <div class="join-btns">
-        <a class="btn" href="${TG_CHANNEL}" target="_blank" rel="noopener">📡 کەناڵی تێلگرام</a>
-        <a class="btn ghost" href="${TG_CHAT}" target="_blank" rel="noopener">گروپی چات 💬</a>
-      </div>
-    </div>`;
+  $('#view').innerHTML =
+    '<div class="page-head" style="text-align:center;margin-top:28px">' +
+    '<h2>بەڕێوەبەرانی Our-World 👑</h2>' +
+    '<p>ئەندامانی تیمی Our-World کە بە دڵسۆزییەوە ئەم شوێنە بەڕێوە دەبەن</p></div>' +
+    '<div class="team-grid">' +
+    TEAM.map(m =>
+      '<div class="team-card"><img src="' + m.img + '" alt="' + esc(m.name) + '">' +
+      '<b>' + esc(m.name) + '</b><span class="role">' + esc(m.role) + '</span></div>').join('') +
+    '</div>' +
+    '<div class="join" style="margin-top:26px">' +
+    '<h3>پەیوەندیمان پێوە بکە 📡</h3>' +
+    '<p>بۆ پێشنیار، سکاڵا یان هاوکاری — لە ڕێگەی تێلگرامەوە پەیوەندیمان پێوە بکە.</p>' +
+    '<div class="join-btns">' +
+    '<a class="btn" href="' + TG_CHANNEL + '" target="_blank" rel="noopener">📡 کەناڵی تێلگرام</a>' +
+    '<a class="btn ghost" href="' + TG_CHAT + '" target="_blank" rel="noopener">گروپی چات 💬</a>' +
+    '</div></div>';
 }
 
 /* ---------- auth ---------- */
-function renderAuth(mode = 'login'){
+function renderAuth(mode){
   const isReg = mode === 'register';
-  $('#view').innerHTML = `
-    <div style="max-width:400px;margin:32px auto 0">
-      <div style="text-align:center;margin-bottom:18px">
-        <img src="${LOGO}" alt="Our-World" style="height:64px;border-radius:16px;margin:0 auto 10px">
-        <h2>${isReg ? 'خۆتۆمارکردن' : 'چوونەژوورەوە'}</h2>
-        <p class="mut" style="font-size:12.5px">بۆ کۆمێنتکردن و بەدواداچوونی نوێکان</p>
-      </div>
-      <div class="chip-row" style="justify-content:center">
-        <button class="chip ${!isReg?'on':''}" id="tab-login">چوونەژوورەوە</button>
-        <button class="chip ${isReg?'on':''}" id="tab-reg">خۆتۆمارکردن</button>
-      </div>
-      <div class="panel" style="margin-top:6px">
-        <form id="auth-form">
-          ${isReg ? `<label>ناو</label><input id="a-name" placeholder="ناوی تۆ">` : ''}
-          <label>ئیمەیڵ</label><input id="a-email" dir="ltr" placeholder="you@example.com">
-          <label>وشەی نهێنی</label><input id="a-pass" type="password" dir="ltr" placeholder="••••••">
-          <button class="btn wide" style="margin-top:18px">${isReg ? 'دروستکردنی هەژمار 🎉' : 'چوونەژوورەوە'}</button>
-        </form>
-        <p class="mut" style="font-size:12px;text-align:center;margin-top:13px">
-          ${isReg ? 'هەژمارت هەیە؟' : 'هەژمارت نییە؟'}
-          <a href="javascript:void(0)" id="swap" style="color:var(--accent);font-weight:700">${isReg ? 'بچۆ ژوورەوە' : 'خۆت تۆمار بکە'}</a>
-        </p>
-      </div>
-    </div>`;
+  $('#view').innerHTML =
+    '<div style="max-width:400px;margin:32px auto 0">' +
+    '<div style="text-align:center;margin-bottom:18px">' +
+    '<img src="https://i.postimg.cc/rwD7KZYf/IMG-20260929-231244-779.jpg" alt="Our-World" style="height:64px;border-radius:16px;margin:0 auto 10px">' +
+    '<h2>' + (isReg ? 'خۆتۆمارکردن' : 'چوونەژوورەوە') + '</h2>' +
+    '<p class="mut" style="font-size:12.5px">بۆ کۆمێنتکردن و بەدواداچوونی نوێکان</p></div>' +
+    '<div class="chip-row" style="justify-content:center">' +
+    '<button class="chip ' + (!isReg ? 'on' : '') + '" id="tab-login">چوونەژوورەوە</button>' +
+    '<button class="chip ' + (isReg ? 'on' : '') + '" id="tab-reg">خۆتۆمارکردن</button></div>' +
+    '<div class="panel" style="margin-top:6px"><form id="auth-form">' +
+    (isReg ? '<label>ناو</label><input id="a-name" placeholder="ناوی تۆ">' : '') +
+    '<label>ئیمەیڵ</label><input id="a-email" dir="ltr" placeholder="you@example.com">' +
+    '<label>وشەی نهێنی</label><input id="a-pass" type="password" dir="ltr" placeholder="••••••">' +
+    '<button class="btn wide" style="margin-top:18px">' + (isReg ? 'دروستکردنی هەژمار 🎉' : 'چوونەژوورەوە') + '</button>' +
+    '</form>' +
+    '<p class="mut" style="font-size:12px;text-align:center;margin-top:13px">' +
+    (isReg ? 'هەژمارت هەیە؟ ' : 'هەژمارت نییە؟ ') +
+    '<a href="javascript:void(0)" id="swap" style="color:var(--accent);font-weight:700">' + (isReg ? 'بچۆ ژوورەوە' : 'خۆت تۆمار بکە') + '</a></p>' +
+    '</div></div>';
+
   $('#tab-login').onclick = () => renderAuth('login');
   $('#tab-reg').onclick = () => renderAuth('register');
   $('#swap').onclick = () => renderAuth(isReg ? 'login' : 'register');
+
   $('#auth-form').onsubmit = e => {
     e.preventDefault();
     const name = $('#a-name') ? $('#a-name').value.trim() : '';
@@ -888,14 +921,14 @@ function renderAuth(mode = 'login'){
       store.set('ow_users', users);
       USER = { name, email };
       store.set('ow_user', USER);
-      toast(`هەژمارەکەت دروستکرا — بەخێربێیت ${name} 🎉`);
+      toast('بەخێربێیت ' + name + ' 🎉');
       location.hash = '#/more';
     } else {
-      const u = users.find(u => u.email === email && u.pass === pass);
+      const u = users.find(x => x.email === email && x.pass === pass);
       if(!u){ toast('هیچ هەژمارێک بەم زانیارییە نییە', 'err'); return; }
-      USER = { name:u.name, email:u.email };
+      USER = { name: u.name, email: u.email };
       store.set('ow_user', USER);
-      toast(`بەخێربێیتەوە ${u.name} 👋`);
+      toast('بەخێربێیتەوە ' + u.name + ' 👋');
       location.hash = '#/more';
     }
   };
@@ -903,36 +936,37 @@ function renderAuth(mode = 'login'){
 
 /* ---------- more ---------- */
 function renderMore(){
-  const rows = [
-    ...(USER ? [['⚙️','پانێلی بەڕێوەبردن', 'admin']] : []),
-    ['👑','تیمی Our-World', 'team'],
-    ['🎨','ڕەنگی ماڵپەر', 'theme'],
-    ['ℹ️','دەربارەی ماڵپەر', 'about']
-  ];
-  $('#view').innerHTML = `
-    <div class="page-head"><h2>زیاتر ⋯</h2></div>
-    <div class="user-box">
-      ${USER
-        ? `<div class="u-av">${esc(USER.name.charAt(0))}</div>
-           <div style="flex:1;min-width:0"><b>بەخێربێیت 👋</b><small>${esc(USER.name)} — ${esc(USER.email)}</small></div>
-           <button class="btn ghost sm" id="btn-logout">دەرچوون</button>`
-        : `<div class="u-av">👤</div>
-           <div style="flex:1"><b>میوانی باش</b><small>بۆ کۆمێنت و زیاتر بچۆ ژوورەوە</small></div>
-           <a class="btn sm" href="#/auth">چوونەژوورەوە</a>`}
-    </div>
-    <div class="menu">
-      ${rows.map(([ic, label, act]) => `<button data-act="${act}"><span style="font-size:17px">${ic}</span>${label}<span class="arr">‹</span></button>`).join('')}
-    </div>
-    <div class="join" style="margin-top:22px">
-      <h3>Our-World 📡</h3>
-      <p>هەموو ئەلقەکان لە کەناڵی تێلگرامی ئێمە بڵاو دەکرێنەوە.</p>
-      <div class="join-btns">
-        <a class="btn sm" href="${TG_CHANNEL}" target="_blank" rel="noopener">📡 کەناڵی تێلگرام</a>
-        <a class="btn ghost sm" href="${TG_CHAT}" target="_blank" rel="noopener">گروپی چات 💬</a>
-      </div>
-    </div>`;
-  if(USER) $('#btn-logout').onclick = () => {
-    USER = null; store.set('ow_user', null);
+  let rows = '';
+  if(USER) rows += '<button data-act="admin"><span style="font-size:17px">⚙️</span>پانێلی بەڕێوەبردن<span class="arr">‹</span></button>';
+  rows +=
+    '<button data-act="team"><span style="font-size:17px">👑</span>تیمی Our-World<span class="arr">‹</span></button>' +
+    '<button data-act="theme"><span style="font-size:17px">🎨</span>ڕەنگی ماڵپەر<span class="arr">‹</span></button>' +
+    '<button data-act="about"><span style="font-size:17px">ℹ️</span>دەربارەی ماڵپەر<span class="arr">‹</span></button>';
+
+  $('#view').innerHTML =
+    '<div class="page-head"><h2>زیاتر ⋯</h2></div>' +
+    '<div class="user-box">' +
+    (USER
+      ? '<div class="u-av">' + esc(USER.name.charAt(0)) + '</div>' +
+        '<div style="flex:1;min-width:0"><b>بەخێربێیت 👋</b><small>' + esc(USER.name) + ' — ' + esc(USER.email) + '</small></div>' +
+        '<button class="btn ghost sm" id="btn-logout">دەرچوون</button>'
+      : '<div class="u-av">👤</div>' +
+        '<div style="flex:1"><b>میوانی باش</b><small>بۆ کۆمێنت و زیاتر بچۆ ژوورەوە</small></div>' +
+        '<a class="btn sm" href="#/auth">چوونەژوورەوە</a>') +
+    '</div>' +
+    '<div class="menu">' + rows + '</div>' +
+    '<div class="join" style="margin-top:22px">' +
+    '<h3>Our-World 📡</h3>' +
+    '<p>هەموو ئەلقەکان لە کەناڵی تێلگرامی ئێمە بڵاو دەکرێنەوە.</p>' +
+    '<div class="join-btns">' +
+    '<a class="btn sm" href="' + TG_CHANNEL + '" target="_blank" rel="noopener">📡 کەناڵی تێلگرام</a>' +
+    '<a class="btn ghost sm" href="' + TG_CHAT + '" target="_blank" rel="noopener">گروپی چات 💬</a>' +
+    '</div></div>';
+
+  const lo = $('#btn-logout');
+  if(lo) lo.onclick = () => {
+    USER = null;
+    store.set('ow_user', null);
     toast('تۆ دەرچوویت — بە سەلامەتی 👋');
     renderMore();
   };
@@ -944,23 +978,26 @@ function renderMore(){
   });
 }
 
-/* ---------- about & theme modals ---------- */
+/* ---------- about / theme modals ---------- */
 function openAboutModal(){
-  openModal(`
-    <h3>ℹ️ دەربارەی Our-World</h3>
-    <p class="mut" style="font-size:13px;margin-top:8px">Our-World ماڵپەرێکی کوردییە بۆ تەماشاکردنی ئەنیمێ و خوێندنی مانگا و مانهوا بە ژێرنووسی کوردی. هەموو ئەلقەکان لە کەناڵی تێلگرامی <b style="color:var(--txt)">Our-World</b> بڵاو دەکرێنەوە و لێرە بە شێوەیەکی ڕێکخراو پێشکەش بە تۆ دەکرێن — بەخۆڕایی و بەبێ ڕیکلام.</p>
-    <div class="m-btns">
-      <a class="btn sm" href="${TG_CHANNEL}" target="_blank" rel="noopener">📡 کەناڵی تێلگرام</a>
-      <a class="btn ghost sm" href="${TG_CHAT}" target="_blank" rel="noopener">گروپی چات 💬</a>
-    </div>`);
+  openModal(
+    '<h3>ℹ️ دەربارەی Our-World</h3>' +
+    '<p class="mut" style="font-size:13px;margin-top:8px">Our-World ماڵپەرێکی کوردییە بۆ تەماشاکردنی ئەنیمێ و خوێندنی مانگا و مانهوا بە ژێرنووسی کوردی. هەموو ئەلقەکان لە کەناڵی تێلگرامی <b style="color:var(--txt)">Our-World</b> بڵاو دەکرێنەوە و لێرە بە شێوەیەکی ڕێکخراو پێشکەش بە تۆ دەکرێن — بەخۆڕایی و بەبێ ڕیکلام.</p>' +
+    '<div class="m-btns">' +
+    '<a class="btn sm" href="' + TG_CHANNEL + '" target="_blank" rel="noopener">📡 کەناڵی تێلگرام</a>' +
+    '<a class="btn ghost sm" href="' + TG_CHAT + '" target="_blank" rel="noopener">گروپی چات 💬</a>' +
+    '</div>'
+  );
 }
 function openThemeModal(){
-  openModal(`
-    <h3>🎨 ڕەنگی ماڵپەر</h3>
-    <p class="mut" style="font-size:12.5px">ڕەنگێک هەڵبژێرە — یەکسەر جێبەجێ دەبێت و پاشەکەوت دەکرێت</p>
-    <div class="theme-grid">
-      ${THEMES.map(t => `<button class="theme-dot ${t.id === THEME ? 'sel' : ''}" data-th="${t.id}" style="--c:${t.c}"><span></span>${t.name}</button>`).join('')}
-    </div>`);
+  openModal(
+    '<h3>🎨 ڕەنگی ماڵپەر</h3>' +
+    '<p class="mut" style="font-size:12.5px">ڕەنگێک هەڵبژێرە — یەکسەر جێبەجێ دەبێت و پاشەکەوت دەکرێت</p>' +
+    '<div class="theme-grid">' +
+    THEMES.map(t =>
+      '<button class="theme-dot ' + (t.id === THEME ? 'sel' : '') + '" data-th="' + t.id + '" style="--c:' + t.c + '">' +
+      '<span></span>' + t.name + '</button>').join('') +
+    '</div>');
   $$('.theme-dot').forEach(b => b.onclick = () => {
     applyTheme(b.dataset.th);
     $$('.theme-dot').forEach(x => x.classList.toggle('sel', x === b));
@@ -968,43 +1005,37 @@ function openThemeModal(){
   });
 }
 
-/* ---------- admin ---------- */
+/* ---------- admin panel ---------- */
 function renderAdmin(){
   if(!USER){ toast('تکایە سەرەتا بچۆ ژوورەوە', 'err'); location.hash = '#/auth'; return; }
-  $('#view').innerHTML = `
-    <div class="page-head"><h2>پانێلی بەڕێوەبردن ⚙️</h2><p>بەخێربێیت ${esc(USER.name)} — بەڕێوەبردنی بابەتەکان و ئەلقەکان</p></div>
-    <div class="panel">
-      <h4>زیادکردنی بابەتی نوێ</h4>
-      <form id="add-form">
-        <div class="form-grid">
-          <div class="full"><label>ناوی بابەت</label><input id="f-title" placeholder="وەک: بەرزبوونەوەی تاکەکەسی"></div>
-          <div><label>جۆر</label>
-            <select id="f-type">${Object.entries(TYPES).map(([k,v]) => `<option value="${k}">${v.emoji} ${v.name}</option>`).join('')}</select>
-          </div>
-          <div><label>ساڵ</label><input id="f-year" type="number" placeholder="2024"></div>
-          <div><label>هەڵسەنگاندن (0–10)</label><input id="f-rating" type="number" step="0.1" min="0" max="10" placeholder="8.5"></div>
-          <div><label>وەرگێڕەر</label><input id="f-trans" placeholder="رەهێڵ / گۆجۆ / تۆیا تۆدۆڕۆکی"></div>
-          <div class="full"><label>ژانرەکان (بە کۆما جیابکەرەوە)</label><input id="f-genres" placeholder="ئەکشن, فانتازیا, سەرکێشی"></div>
-          <div class="full"><label>باسی چیرۆک</label><textarea id="f-desc" rows="3" placeholder="کورتەیەک لەسەر چیرۆکەکە..."></textarea></div>
-        </div>
-        <button class="btn" style="margin-top:16px">زیادکردن</button>
-      </form>
-    </div>
-    <div class="panel">
-      <h4>بەڕێوەبردنی بابەتەکان (${DB.length})</h4>
-      <div id="admin-list">
-        ${DB.map(t => `
-          <div class="admin-row">
-            <a href="#/detail/${t.id}"><b>${esc(t.title)}</b></a>
-            <span class="tag acc">${TYPES[t.type].short}</span>
-            <span class="tag">${t.type === 'movie' ? 'فیلم' : t.episodes.length + ' ' + TYPES[t.type].unit}</span>
-            <div class="ar-btns">
-              <button data-add="${t.id}" title="زیادکردنی ئەلقە">➕</button>
-              <button data-del="${t.id}" title="سڕینەوە">🗑</button>
-            </div>
-          </div>`).join('')}
-      </div>
-    </div>`;
+  $('#view').innerHTML =
+    '<div class="page-head"><h2>پانێلی بەڕێوەبردن ⚙️</h2><p>بەخێربێیت ' + esc(USER.name) + ' — بەڕێوەبردنی بابەت و ئەلقە و ترایلەر</p></div>' +
+    '<div class="panel"><h4>زیادکردنی بابەتی نوێ</h4>' +
+    '<form id="add-form"><div class="form-grid">' +
+    '<div class="full"><label>ناوی بابەت</label><input id="f-title" placeholder="وەک: Blue Box"></div>' +
+    '<div><label>جۆر</label><select id="f-type">' +
+    Object.entries(TYPES).map(([k, v]) => '<option value="' + k + '">' + v.emoji + ' ' + v.name + '</option>').join('') +
+    '</select></div>' +
+    '<div><label>ساڵ</label><input id="f-year" type="number" placeholder="2024"></div>' +
+    '<div><label>هەڵسەنگاندن ٠ تا ١٠</label><input id="f-rating" type="number" step="0.1" min="0" max="10" placeholder="8.5"></div>' +
+    '<div><label>وەرگێڕەر</label><input id="f-trans" placeholder="رەهێڵ / گۆجۆ / تۆیا تۆدۆڕۆکی"></div>' +
+    '<div class="full"><label>ژانرەکان — بە کۆما جیابکەرەوە</label><input id="f-genres" placeholder="ئەکشن, فانتازیا, سەرکێشی"></div>' +
+    '<div class="full"><label>لینکی وێنەی بەرگ — ئارەزوومەندانە</label><input id="f-img" dir="ltr" placeholder="https://i.postimg.cc/..."></div>' +
+    '<div class="full"><label>لینکی ترایلەر — یوتیووب یان تێلگرام</label><input id="f-trailer" dir="ltr" placeholder="https://youtu.be/... یان t.me/Our_World13/123"></div>' +
+    '<div class="full"><label>باسی چیرۆک</label><textarea id="f-desc" rows="3" placeholder="کورتەیەک لەسەر چیرۆکەکە..."></textarea></div>' +
+    '</div><button class="btn" style="margin-top:16px">زیادکردن</button></form></div>' +
+
+    '<div class="panel"><h4>بەڕێوەبردنی بابەتەکان — ' + DB.length + '</h4><div id="admin-list">' +
+    DB.map(t =>
+      '<div class="admin-row"><a href="#/detail/' + t.id + '"><b>' + esc(t.title) + '</b></a>' +
+      '<span class="tag acc">' + TYPES[t.type].short + '</span>' +
+      '<span class="tag">' + countLabel(t) + '</span>' +
+      '<div class="ar-btns">' +
+      '<button data-add="' + t.id + '" title="ئەلقە / چاپتەر">➕</button>' +
+      '<button data-tr="' + t.id + '" title="ترایلەر">🎬</button>' +
+      '<button data-del="' + t.id + '" title="سڕینەوە">🗑</button>' +
+      '</div></div>').join('') +
+    '</div></div>';
 
   $('#add-form').onsubmit = e => {
     e.preventDefault();
@@ -1013,8 +1044,8 @@ function renderAdmin(){
     const rating = parseFloat($('#f-rating').value);
     const genres = $('#f-genres').value.split(/[,،]/).map(s => s.trim()).filter(Boolean);
     if(!title){ toast('تکایە ناوی بابەت بنووسە', 'err'); return; }
-    if(!year || year < 1900 || year > 2035){ toast('ساڵەکە دروست نییە (1900–2035)', 'err'); return; }
-    if(isNaN(rating) || rating < 0 || rating > 10){ toast('هەڵسەنگاندن دەبێت لە نێوان 0 و 10 بێت', 'err'); return; }
+    if(!year || year < 1900 || year > 2035){ toast('ساڵەکە دروست نییە', 'err'); return; }
+    if(isNaN(rating) || rating < 0 || rating > 10){ toast('هەڵسەنگاندن دەبێت لە نێوان ٠ و ١٠ بێت', 'err'); return; }
     DB.push({
       id: Math.max(0, ...DB.map(x => x.id)) + 1,
       title, type: $('#f-type').value, year, rating,
@@ -1022,6 +1053,8 @@ function renderAdmin(){
       translator: $('#f-trans').value.trim(),
       genres: genres.length ? genres : ['ئەکشن'],
       desc: $('#f-desc').value.trim() || 'چیرۆکەکە بەم زووانە زیاد دەکرێت...',
+      img: $('#f-img').value.trim(),
+      trailer: normLink($('#f-trailer').value.trim()),
       episodes: []
     });
     saveDB();
@@ -1030,6 +1063,7 @@ function renderAdmin(){
   };
 
   $$('#admin-list [data-add]').forEach(b => b.onclick = () => openEpisodeModal(+b.dataset.add));
+  $$('#admin-list [data-tr]').forEach(b => b.onclick = () => openAdminTrailer(+b.dataset.tr));
   $$('#admin-list [data-del]').forEach(b => b.onclick = () => {
     if(b.classList.contains('armed')){
       DB = DB.filter(x => x.id !== +b.dataset.del);
@@ -1039,30 +1073,73 @@ function renderAdmin(){
     } else {
       b.classList.add('armed');
       b.textContent = 'دڵنیای؟';
-      setTimeout(() => { if(b.isConnected){ b.classList.remove('armed'); b.textContent = '🗑'; } }, 2800);
+      setTimeout(() => {
+        if(b.isConnected){ b.classList.remove('armed'); b.textContent = '🗑'; }
+      }, 2800);
     }
   });
 }
+
+/* episode/chapter manager with per-episode delete */
 function openEpisodeModal(itemId){
   const t = DB.find(x => x.id === itemId);
   if(!t) return;
-  const nextN = (t.episodes.length ? Math.max(...t.episodes.map(e => e.n)) : 0) + 1;
   const isChap = t.type === 'manga' || t.type === 'manhwa';
-  openModal(`
-    <h3>➕ زیادکردنی ${isChap ? 'چاپتەر' : 'ئەلقە'} — ${esc(t.title)}</h3>
-    <label>ژمارە</label><input id="ep-num" type="number" min="1" value="${nextN}">
-    <label>لینکی تێلگرام</label><input id="ep-link" dir="ltr" placeholder="t.me/Our_World13/123">
-    <button class="btn wide" style="margin-top:18px" id="ep-save">پاشەکەوتکردن</button>`);
+  const unit = isChap ? 'چاپتەر' : 'ئەلقە';
+  const eps = [...t.episodes].sort((a, b) => a.n - b.n);
+  const nextN = eps.length ? eps[eps.length - 1].n + 1 : 1;
+
+  openModal(
+    '<h3>➕ بەڕێوەبردنی ' + unit + 'ەکان — ' + esc(t.title) + '</h3>' +
+    (eps.length
+      ? '<div style="margin-top:12px">' + eps.map(e =>
+          '<div class="admin-row"><b>' + unit + ' ' + e.n + '</b>' +
+          '<span class="tag ' + (e.link ? 'acc' : '') + '">' + (e.link ? 'لینک ✓' : 'بێ لینک') + '</span>' +
+          '<div class="ar-btns"><button data-delep="' + e.n + '">🗑</button></div></div>').join('') + '</div>'
+      : '<p class="mut" style="font-size:13px;margin-top:10px">هێشتا هیچی زیاد نەکراوە</p>') +
+    '<label>ژمارەی ' + unit + '</label><input id="ep-num" type="number" min="1" value="' + nextN + '">' +
+    '<label>لینکی تێلگرام</label><input id="ep-link" dir="ltr" placeholder="t.me/Our_World13/123">' +
+    '<button class="btn wide" style="margin-top:16px" id="ep-save">پاشەکەوتکردن</button>'
+  );
+
+  $$('#m-box [data-delep]').forEach(b => b.onclick = () => {
+    t.episodes = t.episodes.filter(e => e.n !== +b.dataset.delep);
+    saveDB();
+    toast(unit + 'ەکە سڕایەوە ✓');
+    openEpisodeModal(itemId);
+  });
+
   $('#ep-save').onclick = () => {
     const num = parseInt($('#ep-num').value, 10);
-    const link = $('#ep-link').value.trim();
+    const link = normLink($('#ep-link').value.trim());
     if(!num || num < 1){ toast('ژمارەیەکی دروست بنووسە', 'err'); return; }
     const ex = t.episodes.find(e => e.n === num);
-    if(ex) ex.link = normLink(link);
-    else t.episodes.push({ n: num, link: normLink(link) });
+    if(ex) ex.link = link;
+    else t.episodes.push({ n: num, link });
     saveDB();
     closeModal();
-    toast(ex ? 'لینکی ' + (isChap ? 'چاپتەر' : 'ئەلقە) نوێکرایەوە ✓' : (isChap ? 'چاپتەر' : 'ئەلقە') + 'ەکە پاشەکەوتکرا ✓');
+    if(ex) toast('لینکی ' + unit + ' نوێکرایەوە ✓');
+    else toast(unit + ' زیادکرا ✓');
+    renderAdmin();
+  };
+}
+
+/* admin trailer setter */
+function openAdminTrailer(itemId){
+  const t = DB.find(x => x.id === itemId);
+  if(!t) return;
+  openModal(
+    '<h3>🎬 ترایلەر — ' + esc(t.title) + '</h3>' +
+    '<p class="mut" style="font-size:12px;margin-top:4px">لینکی یوتیووب یان پۆستی تێلگرام دابنێ — دەبێتە شێوەی نەخشە لە ماڵپەرەکە</p>' +
+    '<label>لینکی ترایلەر</label><input id="tr-link" dir="ltr" placeholder="https://youtu.be/... یان t.me/Our_World13/123" value="' + esc(t.trailer || '') + '">' +
+    '<button class="btn wide" style="margin-top:16px" id="tr-save">پاشەکەوتکردن</button>'
+  );
+  $('#tr-save').onclick = () => {
+    t.trailer = normLink($('#tr-link').value.trim());
+    saveDB();
+    closeModal();
+    if(t.trailer) toast('ترایلەر پاشەکەوتکرا ✓');
+    else toast('ترایلەر لابرا ✓');
     renderAdmin();
   };
 }
@@ -1073,7 +1150,6 @@ function updateNav(key){
   $$('#top-links a').forEach(a => a.classList.toggle('active', a.dataset.key === key));
 }
 function router(){
-  clearInterval(heroTimer);
   toggleDrawer(false);
   closeModal();
   window.scrollTo({ top: 0 });
@@ -1094,17 +1170,18 @@ function router(){
 }
 window.addEventListener('hashchange', router);
 
-/* ---------- global header / nav bindings ---------- */
- $('#btn-search').onclick = () => location.hash = '#/search';
- $('#btn-user').onclick = () => location.hash = USER ? '#/more' : '#/auth';
+/* ---------- global bindings ---------- */
+ $('#btn-drawer').onclick = () => toggleDrawer(true);
+ $('#drawer-scrim').onclick = () => toggleDrawer(false);
+ $('#btn-search').onclick = () => { location.hash = '#/search'; };
+ $('#btn-user').onclick = () => { location.hash = USER ? '#/more' : '#/auth'; };
  $('#nav-theme').onclick = openThemeModal;
- $$('#bottom-nav button[data-hash]').forEach(b => b.onclick = () => location.hash = b.dataset.hash);
+ $$('#bottom-nav button[data-hash]').forEach(b => b.onclick = () => { location.hash = b.dataset.hash; });
 
-/* drawer static content */
- $('#drawer-types').innerHTML = Object.entries(TYPES).map(([k,v]) =>
-  `<a class="d-tile" href="#/browse/type/${k}"><i>${v.emoji}</i>${v.name}</a>`).join('');
+ $('#drawer-types').innerHTML = Object.entries(TYPES).map(([k, v]) =>
+  '<a class="d-tile" href="#/browse/type/' + k + '"><i>' + v.emoji + '</i>' + v.name + '</a>').join('');
  $('#drawer-genres').innerHTML = GENRE_LIST.map(g =>
-  `<a class="d-tile" href="#/browse/genre/${encodeURIComponent(g.name)}"><i>${g.emoji}</i>${esc(g.name)}</a>`).join('');
+  '<a class="d-tile" href="#/browse/genre/' + encodeURIComponent(g.name) + '"><i>' + g.emoji + '</i>' + esc(g.name) + '</a>').join('');
 
 /* ---------- init ---------- */
 router();
